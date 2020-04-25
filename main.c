@@ -8,40 +8,20 @@
 #include <avr/io.h>
 #include <stdio.h>
 #include <string.h>
-#include "HAL/Bluetooth.h"
+#include "MCAL/EF_UART.h"
+#include "util/delay.h"
+
 
 int main()
 {
-char incoming_data[20]={0};
-char Turn_on_array[20]="turn on lamb";
-char Turn_off_array[20]="turn off lamb";
+	UART_cfg_str UART_Structure={9600,8,1,0,FALSE,FALSE,TRUE,TRUE};
 
-
-	EF_void_BLUETOOTH_Init();
-
-	EF_B_DIO_InitPin('D',4,OUTPUT);    // init Relay as Output
-	EF_S8_DIO_ClearPin('D',4);
+	EF_void_UART_Init(&UART_Structure);
 	while(1)
 	{
+		EF_void_UART_SendString((unsigned char *)"\r\nHello from UART");
 
-
-		memset(incoming_data, 0,20*sizeof(char));
-
-		EF_Void_BLUETOOTH_ReadArray_untill_Searchkey(incoming_data,20,"lamb");
-
-		if(strcmp(incoming_data,Turn_on_array)==0)
-		{
-			EF_S8_DIO_SetPin('D',4);   //turn on Relay
-		}
-
-		else if(strcmp(incoming_data,Turn_off_array)==0)
-		{
-	       EF_S8_DIO_ClearPin('D',4);
-		}
-
-		EF_Void_BLUETOOTH_Send_String(incoming_data);
-
-
+_delay_ms(2000);
 	}
 	return 0;
 }

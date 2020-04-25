@@ -1,13 +1,8 @@
-main.d main.o: ../main.c ../HAL/Bluetooth.h ../HAL/../MCAL/EF_DIO.h \
-  ../HAL/../MCAL/../ServiceLayer/std_types.h ../HAL/../MCAL/EF_UART.h \
-  ../HAL/../MCAL/EF_UART_cfg.h
+main.o main.o: ../main.c ../MCAL/EF_UART.h ../MCAL/EF_UART_cfg.h \
+  ../MCAL/../ServiceLayer/std_types.h
 
-../HAL/Bluetooth.h:
+../MCAL/EF_UART.h:
 
-../HAL/../MCAL/EF_DIO.h:
+../MCAL/EF_UART_cfg.h:
 
-../HAL/../MCAL/../ServiceLayer/std_types.h:
-
-../HAL/../MCAL/EF_UART.h:
-
-../HAL/../MCAL/EF_UART_cfg.h:
+../MCAL/../ServiceLayer/std_types.h:

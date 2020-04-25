@@ -14,9 +14,6 @@ RM := rm -rf
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(strip $(C_DEPS)),)
--include $(C_DEPS)
-endif
 ifneq ($(strip $(ASM_DEPS)),)
 -include $(ASM_DEPS)
 endif
@@ -26,62 +23,65 @@ endif
 ifneq ($(strip $(S_UPPER_DEPS)),)
 -include $(S_UPPER_DEPS)
 endif
+ifneq ($(strip $(C_DEPS)),)
+-include $(C_DEPS)
+endif
 endif
 
 -include ../makefile.defs
 
 # Add inputs and outputs from these tool invocations to the build variables 
 LSS += \
-Bluetooth_Nmr.lss \
+UART_Check.lss \
 
 FLASH_IMAGE += \
-Bluetooth_Nmr.hex \
+UART_Check.hex \
 
 EEPROM_IMAGE += \
-Bluetooth_Nmr.eep \
+UART_Check.eep \
 
 SIZEDUMMY += \
 sizedummy \
 
 
 # All Target
-all: Bluetooth_Nmr.elf secondary-outputs
+all: UART_Check.elf secondary-outputs
 
 # Tool invocations
-Bluetooth_Nmr.elf: $(OBJS) $(USER_OBJS)
+UART_Check.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,Bluetooth_Nmr.map -mmcu=atmega32 -o "Bluetooth_Nmr.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,UART_Check.map -mmcu=atmega32 -o "UART_Check.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-Bluetooth_Nmr.lss: Bluetooth_Nmr.elf
+UART_Check.lss: UART_Check.elf
 	@echo 'Invoking: AVR Create Extended Listing'
-	-avr-objdump -h -S Bluetooth_Nmr.elf  >"Bluetooth_Nmr.lss"
+	-avr-objdump -h -S UART_Check.elf  >"UART_Check.lss"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Bluetooth_Nmr.hex: Bluetooth_Nmr.elf
+UART_Check.hex: UART_Check.elf
 	@echo 'Create Flash image (ihex format)'
-	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex Bluetooth_Nmr.elf  "Bluetooth_Nmr.hex"
+	-avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex UART_Check.elf  "UART_Check.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Bluetooth_Nmr.eep: Bluetooth_Nmr.elf
+UART_Check.eep: UART_Check.elf
 	@echo 'Create eeprom image (ihex format)'
-	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex Bluetooth_Nmr.elf  "Bluetooth_Nmr.eep"
+	-avr-objcopy -j .eeprom --no-change-warnings --change-section-lma .eeprom=0 -O ihex UART_Check.elf  "UART_Check.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-sizedummy: Bluetooth_Nmr.elf
+sizedummy: UART_Check.elf
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega32 Bluetooth_Nmr.elf
+	-avr-size --format=avr --mcu=atmega32 UART_Check.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJS)$(C_DEPS)$(ASM_DEPS)$(EEPROM_IMAGE)$(FLASH_IMAGE)$(ELFS)$(LSS)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS) Bluetooth_Nmr.elf
+	-$(RM) $(FLASH_IMAGE)$(ELFS)$(OBJS)$(ASM_DEPS)$(EEPROM_IMAGE)$(S_DEPS)$(SIZEDUMMY)$(S_UPPER_DEPS)$(LSS)$(C_DEPS) UART_Check.elf
 	-@echo ' '
 
 secondary-outputs: $(LSS) $(FLASH_IMAGE) $(EEPROM_IMAGE) $(SIZEDUMMY)

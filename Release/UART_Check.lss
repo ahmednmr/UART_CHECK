@@ -1,0 +1,3017 @@
+
+UART_Check.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000177a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000050  00800060  0000177a  0000180e  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000003e  008000b0  008000b0  0000185e  2**0
+                  ALLOC
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+       4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      14:	0c 94 62 05 	jmp	0xac4	; 0xac4 <__vector_5>
+      18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+      54:	11 24       	eor	r1, r1
+      56:	1f be       	out	0x3f, r1	; 63
+      58:	cf e5       	ldi	r28, 0x5F	; 95
+      5a:	d8 e0       	ldi	r29, 0x08	; 8
+      5c:	de bf       	out	0x3e, r29	; 62
+      5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+      60:	10 e0       	ldi	r17, 0x00	; 0
+      62:	a0 e6       	ldi	r26, 0x60	; 96
+      64:	b0 e0       	ldi	r27, 0x00	; 0
+      66:	ea e7       	ldi	r30, 0x7A	; 122
+      68:	f7 e1       	ldi	r31, 0x17	; 23
+      6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+      6c:	05 90       	lpm	r0, Z+
+      6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+      70:	a0 3b       	cpi	r26, 0xB0	; 176
+      72:	b1 07       	cpc	r27, r17
+      74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+      76:	10 e0       	ldi	r17, 0x00	; 0
+      78:	a0 eb       	ldi	r26, 0xB0	; 176
+      7a:	b0 e0       	ldi	r27, 0x00	; 0
+      7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+      7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+      80:	ae 3e       	cpi	r26, 0xEE	; 238
+      82:	b1 07       	cpc	r27, r17
+      84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+      86:	0e 94 0e 0b 	call	0x161c	; 0x161c <main>
+      8a:	0c 94 bb 0b 	jmp	0x1776	; 0x1776 <_exit>
+
+0000008e <__bad_interrupt>:
+      8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <EF_void_ADC_init>:
+      92:	68 2f       	mov	r22, r24
+      94:	81 e6       	ldi	r24, 0x61	; 97
+      96:	40 e0       	ldi	r20, 0x00	; 0
+      98:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+      9c:	86 b1       	in	r24, 0x06	; 6
+      9e:	87 60       	ori	r24, 0x07	; 7
+      a0:	86 b9       	out	0x06, r24	; 6
+      a2:	37 9a       	sbi	0x06, 7	; 6
+      a4:	08 95       	ret
+
+000000a6 <EF_u16_ADC_read>:
+      a6:	1f 93       	push	r17
+      a8:	18 2f       	mov	r17, r24
+      aa:	0e 94 49 00 	call	0x92	; 0x92 <EF_void_ADC_init>
+      ae:	17 b9       	out	0x07, r17	; 7
+      b0:	3e 9a       	sbi	0x07, 6	; 7
+      b2:	3d 98       	cbi	0x07, 5	; 7
+      b4:	36 9a       	sbi	0x06, 6	; 6
+      b6:	34 9b       	sbis	0x06, 4	; 6
+      b8:	fe cf       	rjmp	.-4      	; 0xb6 <EF_u16_ADC_read+0x10>
+      ba:	34 9a       	sbi	0x06, 4	; 6
+      bc:	24 b1       	in	r18, 0x04	; 4
+      be:	35 b1       	in	r19, 0x05	; 5
+      c0:	c9 01       	movw	r24, r18
+      c2:	1f 91       	pop	r17
+      c4:	08 95       	ret
+
+000000c6 <EF_S8_DIO_InitPort>:
+      c6:	84 34       	cpi	r24, 0x44	; 68
+      c8:	e9 f0       	breq	.+58     	; 0x104 <EF_S8_DIO_InitPort+0x3e>
+      ca:	85 34       	cpi	r24, 0x45	; 69
+      cc:	38 f4       	brcc	.+14     	; 0xdc <EF_S8_DIO_InitPort+0x16>
+      ce:	82 34       	cpi	r24, 0x42	; 66
+      d0:	a1 f0       	breq	.+40     	; 0xfa <EF_S8_DIO_InitPort+0x34>
+      d2:	83 34       	cpi	r24, 0x43	; 67
+      d4:	a0 f4       	brcc	.+40     	; 0xfe <EF_S8_DIO_InitPort+0x38>
+      d6:	81 34       	cpi	r24, 0x41	; 65
+      d8:	61 f4       	brne	.+24     	; 0xf2 <EF_S8_DIO_InitPort+0x2c>
+      da:	0d c0       	rjmp	.+26     	; 0xf6 <EF_S8_DIO_InitPort+0x30>
+      dc:	82 36       	cpi	r24, 0x62	; 98
+      de:	69 f0       	breq	.+26     	; 0xfa <EF_S8_DIO_InitPort+0x34>
+      e0:	83 36       	cpi	r24, 0x63	; 99
+      e2:	18 f4       	brcc	.+6      	; 0xea <EF_S8_DIO_InitPort+0x24>
+      e4:	81 36       	cpi	r24, 0x61	; 97
+      e6:	29 f4       	brne	.+10     	; 0xf2 <EF_S8_DIO_InitPort+0x2c>
+      e8:	06 c0       	rjmp	.+12     	; 0xf6 <EF_S8_DIO_InitPort+0x30>
+      ea:	83 36       	cpi	r24, 0x63	; 99
+      ec:	41 f0       	breq	.+16     	; 0xfe <EF_S8_DIO_InitPort+0x38>
+      ee:	84 36       	cpi	r24, 0x64	; 100
+      f0:	49 f0       	breq	.+18     	; 0x104 <EF_S8_DIO_InitPort+0x3e>
+      f2:	8f ef       	ldi	r24, 0xFF	; 255
+      f4:	08 95       	ret
+      f6:	6a bb       	out	0x1a, r22	; 26
+      f8:	03 c0       	rjmp	.+6      	; 0x100 <EF_S8_DIO_InitPort+0x3a>
+      fa:	67 bb       	out	0x17, r22	; 23
+      fc:	01 c0       	rjmp	.+2      	; 0x100 <EF_S8_DIO_InitPort+0x3a>
+      fe:	64 bb       	out	0x14, r22	; 20
+     100:	81 e0       	ldi	r24, 0x01	; 1
+     102:	08 95       	ret
+     104:	61 bb       	out	0x11, r22	; 17
+     106:	81 e0       	ldi	r24, 0x01	; 1
+     108:	08 95       	ret
+
+0000010a <EF_S8_DIO_WritePort>:
+     10a:	84 34       	cpi	r24, 0x44	; 68
+     10c:	19 f1       	breq	.+70     	; 0x154 <EF_S8_DIO_WritePort+0x4a>
+     10e:	85 34       	cpi	r24, 0x45	; 69
+     110:	38 f4       	brcc	.+14     	; 0x120 <EF_S8_DIO_WritePort+0x16>
+     112:	82 34       	cpi	r24, 0x42	; 66
+     114:	b1 f0       	breq	.+44     	; 0x142 <EF_S8_DIO_WritePort+0x38>
+     116:	83 34       	cpi	r24, 0x43	; 67
+     118:	c0 f4       	brcc	.+48     	; 0x14a <EF_S8_DIO_WritePort+0x40>
+     11a:	81 34       	cpi	r24, 0x41	; 65
+     11c:	61 f4       	brne	.+24     	; 0x136 <EF_S8_DIO_WritePort+0x2c>
+     11e:	0d c0       	rjmp	.+26     	; 0x13a <EF_S8_DIO_WritePort+0x30>
+     120:	82 36       	cpi	r24, 0x62	; 98
+     122:	79 f0       	breq	.+30     	; 0x142 <EF_S8_DIO_WritePort+0x38>
+     124:	83 36       	cpi	r24, 0x63	; 99
+     126:	18 f4       	brcc	.+6      	; 0x12e <EF_S8_DIO_WritePort+0x24>
+     128:	81 36       	cpi	r24, 0x61	; 97
+     12a:	29 f4       	brne	.+10     	; 0x136 <EF_S8_DIO_WritePort+0x2c>
+     12c:	06 c0       	rjmp	.+12     	; 0x13a <EF_S8_DIO_WritePort+0x30>
+     12e:	83 36       	cpi	r24, 0x63	; 99
+     130:	61 f0       	breq	.+24     	; 0x14a <EF_S8_DIO_WritePort+0x40>
+     132:	84 36       	cpi	r24, 0x64	; 100
+     134:	79 f0       	breq	.+30     	; 0x154 <EF_S8_DIO_WritePort+0x4a>
+     136:	8f ef       	ldi	r24, 0xFF	; 255
+     138:	08 95       	ret
+     13a:	8b b3       	in	r24, 0x1b	; 27
+     13c:	86 2b       	or	r24, r22
+     13e:	8b bb       	out	0x1b, r24	; 27
+     140:	07 c0       	rjmp	.+14     	; 0x150 <EF_S8_DIO_WritePort+0x46>
+     142:	88 b3       	in	r24, 0x18	; 24
+     144:	86 2b       	or	r24, r22
+     146:	88 bb       	out	0x18, r24	; 24
+     148:	03 c0       	rjmp	.+6      	; 0x150 <EF_S8_DIO_WritePort+0x46>
+     14a:	85 b3       	in	r24, 0x15	; 21
+     14c:	86 2b       	or	r24, r22
+     14e:	85 bb       	out	0x15, r24	; 21
+     150:	81 e0       	ldi	r24, 0x01	; 1
+     152:	08 95       	ret
+     154:	82 b3       	in	r24, 0x12	; 18
+     156:	86 2b       	or	r24, r22
+     158:	82 bb       	out	0x12, r24	; 18
+     15a:	81 e0       	ldi	r24, 0x01	; 1
+     15c:	08 95       	ret
+
+0000015e <EF_S16_DIO_ReadPort>:
+     15e:	df 93       	push	r29
+     160:	cf 93       	push	r28
+     162:	0f 92       	push	r0
+     164:	cd b7       	in	r28, 0x3d	; 61
+     166:	de b7       	in	r29, 0x3e	; 62
+     168:	84 34       	cpi	r24, 0x44	; 68
+     16a:	d9 f0       	breq	.+54     	; 0x1a2 <EF_S16_DIO_ReadPort+0x44>
+     16c:	85 34       	cpi	r24, 0x45	; 69
+     16e:	38 f4       	brcc	.+14     	; 0x17e <EF_S16_DIO_ReadPort+0x20>
+     170:	82 34       	cpi	r24, 0x42	; 66
+     172:	99 f0       	breq	.+38     	; 0x19a <EF_S16_DIO_ReadPort+0x3c>
+     174:	83 34       	cpi	r24, 0x43	; 67
+     176:	98 f4       	brcc	.+38     	; 0x19e <EF_S16_DIO_ReadPort+0x40>
+     178:	81 34       	cpi	r24, 0x41	; 65
+     17a:	a9 f4       	brne	.+42     	; 0x1a6 <EF_S16_DIO_ReadPort+0x48>
+     17c:	0c c0       	rjmp	.+24     	; 0x196 <EF_S16_DIO_ReadPort+0x38>
+     17e:	82 36       	cpi	r24, 0x62	; 98
+     180:	61 f0       	breq	.+24     	; 0x19a <EF_S16_DIO_ReadPort+0x3c>
+     182:	83 36       	cpi	r24, 0x63	; 99
+     184:	18 f4       	brcc	.+6      	; 0x18c <EF_S16_DIO_ReadPort+0x2e>
+     186:	81 36       	cpi	r24, 0x61	; 97
+     188:	71 f4       	brne	.+28     	; 0x1a6 <EF_S16_DIO_ReadPort+0x48>
+     18a:	05 c0       	rjmp	.+10     	; 0x196 <EF_S16_DIO_ReadPort+0x38>
+     18c:	83 36       	cpi	r24, 0x63	; 99
+     18e:	39 f0       	breq	.+14     	; 0x19e <EF_S16_DIO_ReadPort+0x40>
+     190:	84 36       	cpi	r24, 0x64	; 100
+     192:	49 f4       	brne	.+18     	; 0x1a6 <EF_S16_DIO_ReadPort+0x48>
+     194:	06 c0       	rjmp	.+12     	; 0x1a2 <EF_S16_DIO_ReadPort+0x44>
+     196:	89 b3       	in	r24, 0x19	; 25
+     198:	07 c0       	rjmp	.+14     	; 0x1a8 <EF_S16_DIO_ReadPort+0x4a>
+     19a:	86 b3       	in	r24, 0x16	; 22
+     19c:	05 c0       	rjmp	.+10     	; 0x1a8 <EF_S16_DIO_ReadPort+0x4a>
+     19e:	83 b3       	in	r24, 0x13	; 19
+     1a0:	03 c0       	rjmp	.+6      	; 0x1a8 <EF_S16_DIO_ReadPort+0x4a>
+     1a2:	80 b3       	in	r24, 0x10	; 16
+     1a4:	01 c0       	rjmp	.+2      	; 0x1a8 <EF_S16_DIO_ReadPort+0x4a>
+     1a6:	8f ef       	ldi	r24, 0xFF	; 255
+     1a8:	89 83       	std	Y+1, r24	; 0x01
+     1aa:	89 81       	ldd	r24, Y+1	; 0x01
+     1ac:	90 e0       	ldi	r25, 0x00	; 0
+     1ae:	0f 90       	pop	r0
+     1b0:	cf 91       	pop	r28
+     1b2:	df 91       	pop	r29
+     1b4:	08 95       	ret
+
+000001b6 <EF_B_DIO_InitPin>:
+     1b6:	84 34       	cpi	r24, 0x44	; 68
+     1b8:	09 f4       	brne	.+2      	; 0x1bc <EF_B_DIO_InitPin+0x6>
+     1ba:	6f c0       	rjmp	.+222    	; 0x29a <EF_B_DIO_InitPin+0xe4>
+     1bc:	85 34       	cpi	r24, 0x45	; 69
+     1be:	40 f4       	brcc	.+16     	; 0x1d0 <EF_B_DIO_InitPin+0x1a>
+     1c0:	82 34       	cpi	r24, 0x42	; 66
+     1c2:	91 f1       	breq	.+100    	; 0x228 <EF_B_DIO_InitPin+0x72>
+     1c4:	83 34       	cpi	r24, 0x43	; 67
+     1c6:	08 f0       	brcs	.+2      	; 0x1ca <EF_B_DIO_InitPin+0x14>
+     1c8:	4c c0       	rjmp	.+152    	; 0x262 <EF_B_DIO_InitPin+0xac>
+     1ca:	81 34       	cpi	r24, 0x41	; 65
+     1cc:	71 f4       	brne	.+28     	; 0x1ea <EF_B_DIO_InitPin+0x34>
+     1ce:	0f c0       	rjmp	.+30     	; 0x1ee <EF_B_DIO_InitPin+0x38>
+     1d0:	82 36       	cpi	r24, 0x62	; 98
+     1d2:	51 f1       	breq	.+84     	; 0x228 <EF_B_DIO_InitPin+0x72>
+     1d4:	83 36       	cpi	r24, 0x63	; 99
+     1d6:	18 f4       	brcc	.+6      	; 0x1de <EF_B_DIO_InitPin+0x28>
+     1d8:	81 36       	cpi	r24, 0x61	; 97
+     1da:	39 f4       	brne	.+14     	; 0x1ea <EF_B_DIO_InitPin+0x34>
+     1dc:	08 c0       	rjmp	.+16     	; 0x1ee <EF_B_DIO_InitPin+0x38>
+     1de:	83 36       	cpi	r24, 0x63	; 99
+     1e0:	09 f4       	brne	.+2      	; 0x1e4 <EF_B_DIO_InitPin+0x2e>
+     1e2:	3f c0       	rjmp	.+126    	; 0x262 <EF_B_DIO_InitPin+0xac>
+     1e4:	84 36       	cpi	r24, 0x64	; 100
+     1e6:	09 f4       	brne	.+2      	; 0x1ea <EF_B_DIO_InitPin+0x34>
+     1e8:	58 c0       	rjmp	.+176    	; 0x29a <EF_B_DIO_InitPin+0xe4>
+     1ea:	8f ef       	ldi	r24, 0xFF	; 255
+     1ec:	08 95       	ret
+     1ee:	44 23       	and	r20, r20
+     1f0:	21 f0       	breq	.+8      	; 0x1fa <EF_B_DIO_InitPin+0x44>
+     1f2:	41 30       	cpi	r20, 0x01	; 1
+     1f4:	09 f0       	breq	.+2      	; 0x1f8 <EF_B_DIO_InitPin+0x42>
+     1f6:	6e c0       	rjmp	.+220    	; 0x2d4 <EF_B_DIO_InitPin+0x11e>
+     1f8:	0c c0       	rjmp	.+24     	; 0x212 <EF_B_DIO_InitPin+0x5c>
+     1fa:	2a b3       	in	r18, 0x1a	; 26
+     1fc:	81 e0       	ldi	r24, 0x01	; 1
+     1fe:	90 e0       	ldi	r25, 0x00	; 0
+     200:	02 c0       	rjmp	.+4      	; 0x206 <EF_B_DIO_InitPin+0x50>
+     202:	88 0f       	add	r24, r24
+     204:	99 1f       	adc	r25, r25
+     206:	6a 95       	dec	r22
+     208:	e2 f7       	brpl	.-8      	; 0x202 <EF_B_DIO_InitPin+0x4c>
+     20a:	80 95       	com	r24
+     20c:	82 23       	and	r24, r18
+     20e:	8a bb       	out	0x1a, r24	; 26
+     210:	5f c0       	rjmp	.+190    	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     212:	2a b3       	in	r18, 0x1a	; 26
+     214:	81 e0       	ldi	r24, 0x01	; 1
+     216:	90 e0       	ldi	r25, 0x00	; 0
+     218:	02 c0       	rjmp	.+4      	; 0x21e <EF_B_DIO_InitPin+0x68>
+     21a:	88 0f       	add	r24, r24
+     21c:	99 1f       	adc	r25, r25
+     21e:	6a 95       	dec	r22
+     220:	e2 f7       	brpl	.-8      	; 0x21a <EF_B_DIO_InitPin+0x64>
+     222:	28 2b       	or	r18, r24
+     224:	2a bb       	out	0x1a, r18	; 26
+     226:	54 c0       	rjmp	.+168    	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     228:	44 23       	and	r20, r20
+     22a:	21 f0       	breq	.+8      	; 0x234 <EF_B_DIO_InitPin+0x7e>
+     22c:	41 30       	cpi	r20, 0x01	; 1
+     22e:	09 f0       	breq	.+2      	; 0x232 <EF_B_DIO_InitPin+0x7c>
+     230:	51 c0       	rjmp	.+162    	; 0x2d4 <EF_B_DIO_InitPin+0x11e>
+     232:	0c c0       	rjmp	.+24     	; 0x24c <EF_B_DIO_InitPin+0x96>
+     234:	27 b3       	in	r18, 0x17	; 23
+     236:	81 e0       	ldi	r24, 0x01	; 1
+     238:	90 e0       	ldi	r25, 0x00	; 0
+     23a:	02 c0       	rjmp	.+4      	; 0x240 <EF_B_DIO_InitPin+0x8a>
+     23c:	88 0f       	add	r24, r24
+     23e:	99 1f       	adc	r25, r25
+     240:	6a 95       	dec	r22
+     242:	e2 f7       	brpl	.-8      	; 0x23c <EF_B_DIO_InitPin+0x86>
+     244:	80 95       	com	r24
+     246:	82 23       	and	r24, r18
+     248:	87 bb       	out	0x17, r24	; 23
+     24a:	42 c0       	rjmp	.+132    	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     24c:	27 b3       	in	r18, 0x17	; 23
+     24e:	81 e0       	ldi	r24, 0x01	; 1
+     250:	90 e0       	ldi	r25, 0x00	; 0
+     252:	02 c0       	rjmp	.+4      	; 0x258 <EF_B_DIO_InitPin+0xa2>
+     254:	88 0f       	add	r24, r24
+     256:	99 1f       	adc	r25, r25
+     258:	6a 95       	dec	r22
+     25a:	e2 f7       	brpl	.-8      	; 0x254 <EF_B_DIO_InitPin+0x9e>
+     25c:	28 2b       	or	r18, r24
+     25e:	27 bb       	out	0x17, r18	; 23
+     260:	37 c0       	rjmp	.+110    	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     262:	44 23       	and	r20, r20
+     264:	19 f0       	breq	.+6      	; 0x26c <EF_B_DIO_InitPin+0xb6>
+     266:	41 30       	cpi	r20, 0x01	; 1
+     268:	a9 f5       	brne	.+106    	; 0x2d4 <EF_B_DIO_InitPin+0x11e>
+     26a:	0c c0       	rjmp	.+24     	; 0x284 <EF_B_DIO_InitPin+0xce>
+     26c:	24 b3       	in	r18, 0x14	; 20
+     26e:	81 e0       	ldi	r24, 0x01	; 1
+     270:	90 e0       	ldi	r25, 0x00	; 0
+     272:	02 c0       	rjmp	.+4      	; 0x278 <EF_B_DIO_InitPin+0xc2>
+     274:	88 0f       	add	r24, r24
+     276:	99 1f       	adc	r25, r25
+     278:	6a 95       	dec	r22
+     27a:	e2 f7       	brpl	.-8      	; 0x274 <EF_B_DIO_InitPin+0xbe>
+     27c:	80 95       	com	r24
+     27e:	82 23       	and	r24, r18
+     280:	84 bb       	out	0x14, r24	; 20
+     282:	26 c0       	rjmp	.+76     	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     284:	24 b3       	in	r18, 0x14	; 20
+     286:	81 e0       	ldi	r24, 0x01	; 1
+     288:	90 e0       	ldi	r25, 0x00	; 0
+     28a:	02 c0       	rjmp	.+4      	; 0x290 <EF_B_DIO_InitPin+0xda>
+     28c:	88 0f       	add	r24, r24
+     28e:	99 1f       	adc	r25, r25
+     290:	6a 95       	dec	r22
+     292:	e2 f7       	brpl	.-8      	; 0x28c <EF_B_DIO_InitPin+0xd6>
+     294:	28 2b       	or	r18, r24
+     296:	24 bb       	out	0x14, r18	; 20
+     298:	1b c0       	rjmp	.+54     	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     29a:	44 23       	and	r20, r20
+     29c:	19 f0       	breq	.+6      	; 0x2a4 <EF_B_DIO_InitPin+0xee>
+     29e:	41 30       	cpi	r20, 0x01	; 1
+     2a0:	c9 f4       	brne	.+50     	; 0x2d4 <EF_B_DIO_InitPin+0x11e>
+     2a2:	0c c0       	rjmp	.+24     	; 0x2bc <EF_B_DIO_InitPin+0x106>
+     2a4:	21 b3       	in	r18, 0x11	; 17
+     2a6:	81 e0       	ldi	r24, 0x01	; 1
+     2a8:	90 e0       	ldi	r25, 0x00	; 0
+     2aa:	02 c0       	rjmp	.+4      	; 0x2b0 <EF_B_DIO_InitPin+0xfa>
+     2ac:	88 0f       	add	r24, r24
+     2ae:	99 1f       	adc	r25, r25
+     2b0:	6a 95       	dec	r22
+     2b2:	e2 f7       	brpl	.-8      	; 0x2ac <EF_B_DIO_InitPin+0xf6>
+     2b4:	80 95       	com	r24
+     2b6:	82 23       	and	r24, r18
+     2b8:	81 bb       	out	0x11, r24	; 17
+     2ba:	0a c0       	rjmp	.+20     	; 0x2d0 <EF_B_DIO_InitPin+0x11a>
+     2bc:	21 b3       	in	r18, 0x11	; 17
+     2be:	81 e0       	ldi	r24, 0x01	; 1
+     2c0:	90 e0       	ldi	r25, 0x00	; 0
+     2c2:	02 c0       	rjmp	.+4      	; 0x2c8 <EF_B_DIO_InitPin+0x112>
+     2c4:	88 0f       	add	r24, r24
+     2c6:	99 1f       	adc	r25, r25
+     2c8:	6a 95       	dec	r22
+     2ca:	e2 f7       	brpl	.-8      	; 0x2c4 <EF_B_DIO_InitPin+0x10e>
+     2cc:	28 2b       	or	r18, r24
+     2ce:	21 bb       	out	0x11, r18	; 17
+     2d0:	81 e0       	ldi	r24, 0x01	; 1
+     2d2:	08 95       	ret
+     2d4:	81 e0       	ldi	r24, 0x01	; 1
+     2d6:	08 95       	ret
+
+000002d8 <EF_S8_DIO_SetPin>:
+     2d8:	68 30       	cpi	r22, 0x08	; 8
+     2da:	08 f0       	brcs	.+2      	; 0x2de <EF_S8_DIO_SetPin+0x6>
+     2dc:	44 c0       	rjmp	.+136    	; 0x366 <EF_S8_DIO_SetPin+0x8e>
+     2de:	84 34       	cpi	r24, 0x44	; 68
+     2e0:	b1 f1       	breq	.+108    	; 0x34e <EF_S8_DIO_SetPin+0x76>
+     2e2:	85 34       	cpi	r24, 0x45	; 69
+     2e4:	38 f4       	brcc	.+14     	; 0x2f4 <EF_S8_DIO_SetPin+0x1c>
+     2e6:	82 34       	cpi	r24, 0x42	; 66
+     2e8:	e1 f0       	breq	.+56     	; 0x322 <EF_S8_DIO_SetPin+0x4a>
+     2ea:	83 34       	cpi	r24, 0x43	; 67
+     2ec:	28 f5       	brcc	.+74     	; 0x338 <EF_S8_DIO_SetPin+0x60>
+     2ee:	81 34       	cpi	r24, 0x41	; 65
+     2f0:	d1 f5       	brne	.+116    	; 0x366 <EF_S8_DIO_SetPin+0x8e>
+     2f2:	0c c0       	rjmp	.+24     	; 0x30c <EF_S8_DIO_SetPin+0x34>
+     2f4:	82 36       	cpi	r24, 0x62	; 98
+     2f6:	a9 f0       	breq	.+42     	; 0x322 <EF_S8_DIO_SetPin+0x4a>
+     2f8:	83 36       	cpi	r24, 0x63	; 99
+     2fa:	18 f4       	brcc	.+6      	; 0x302 <EF_S8_DIO_SetPin+0x2a>
+     2fc:	81 36       	cpi	r24, 0x61	; 97
+     2fe:	99 f5       	brne	.+102    	; 0x366 <EF_S8_DIO_SetPin+0x8e>
+     300:	05 c0       	rjmp	.+10     	; 0x30c <EF_S8_DIO_SetPin+0x34>
+     302:	83 36       	cpi	r24, 0x63	; 99
+     304:	c9 f0       	breq	.+50     	; 0x338 <EF_S8_DIO_SetPin+0x60>
+     306:	84 36       	cpi	r24, 0x64	; 100
+     308:	71 f5       	brne	.+92     	; 0x366 <EF_S8_DIO_SetPin+0x8e>
+     30a:	21 c0       	rjmp	.+66     	; 0x34e <EF_S8_DIO_SetPin+0x76>
+     30c:	2b b3       	in	r18, 0x1b	; 27
+     30e:	81 e0       	ldi	r24, 0x01	; 1
+     310:	90 e0       	ldi	r25, 0x00	; 0
+     312:	02 c0       	rjmp	.+4      	; 0x318 <EF_S8_DIO_SetPin+0x40>
+     314:	88 0f       	add	r24, r24
+     316:	99 1f       	adc	r25, r25
+     318:	6a 95       	dec	r22
+     31a:	e2 f7       	brpl	.-8      	; 0x314 <EF_S8_DIO_SetPin+0x3c>
+     31c:	28 2b       	or	r18, r24
+     31e:	2b bb       	out	0x1b, r18	; 27
+     320:	20 c0       	rjmp	.+64     	; 0x362 <EF_S8_DIO_SetPin+0x8a>
+     322:	28 b3       	in	r18, 0x18	; 24
+     324:	81 e0       	ldi	r24, 0x01	; 1
+     326:	90 e0       	ldi	r25, 0x00	; 0
+     328:	02 c0       	rjmp	.+4      	; 0x32e <EF_S8_DIO_SetPin+0x56>
+     32a:	88 0f       	add	r24, r24
+     32c:	99 1f       	adc	r25, r25
+     32e:	6a 95       	dec	r22
+     330:	e2 f7       	brpl	.-8      	; 0x32a <EF_S8_DIO_SetPin+0x52>
+     332:	28 2b       	or	r18, r24
+     334:	28 bb       	out	0x18, r18	; 24
+     336:	15 c0       	rjmp	.+42     	; 0x362 <EF_S8_DIO_SetPin+0x8a>
+     338:	25 b3       	in	r18, 0x15	; 21
+     33a:	81 e0       	ldi	r24, 0x01	; 1
+     33c:	90 e0       	ldi	r25, 0x00	; 0
+     33e:	02 c0       	rjmp	.+4      	; 0x344 <EF_S8_DIO_SetPin+0x6c>
+     340:	88 0f       	add	r24, r24
+     342:	99 1f       	adc	r25, r25
+     344:	6a 95       	dec	r22
+     346:	e2 f7       	brpl	.-8      	; 0x340 <EF_S8_DIO_SetPin+0x68>
+     348:	28 2b       	or	r18, r24
+     34a:	25 bb       	out	0x15, r18	; 21
+     34c:	0a c0       	rjmp	.+20     	; 0x362 <EF_S8_DIO_SetPin+0x8a>
+     34e:	22 b3       	in	r18, 0x12	; 18
+     350:	81 e0       	ldi	r24, 0x01	; 1
+     352:	90 e0       	ldi	r25, 0x00	; 0
+     354:	02 c0       	rjmp	.+4      	; 0x35a <EF_S8_DIO_SetPin+0x82>
+     356:	88 0f       	add	r24, r24
+     358:	99 1f       	adc	r25, r25
+     35a:	6a 95       	dec	r22
+     35c:	e2 f7       	brpl	.-8      	; 0x356 <EF_S8_DIO_SetPin+0x7e>
+     35e:	28 2b       	or	r18, r24
+     360:	22 bb       	out	0x12, r18	; 18
+     362:	81 e0       	ldi	r24, 0x01	; 1
+     364:	08 95       	ret
+     366:	8f ef       	ldi	r24, 0xFF	; 255
+     368:	08 95       	ret
+
+0000036a <EF_S8_DIO_ClearPin>:
+     36a:	68 30       	cpi	r22, 0x08	; 8
+     36c:	08 f0       	brcs	.+2      	; 0x370 <EF_S8_DIO_ClearPin+0x6>
+     36e:	49 c0       	rjmp	.+146    	; 0x402 <EF_S8_DIO_ClearPin+0x98>
+     370:	84 34       	cpi	r24, 0x44	; 68
+     372:	d1 f1       	breq	.+116    	; 0x3e8 <EF_S8_DIO_ClearPin+0x7e>
+     374:	85 34       	cpi	r24, 0x45	; 69
+     376:	40 f4       	brcc	.+16     	; 0x388 <EF_S8_DIO_ClearPin+0x1e>
+     378:	82 34       	cpi	r24, 0x42	; 66
+     37a:	f1 f0       	breq	.+60     	; 0x3b8 <EF_S8_DIO_ClearPin+0x4e>
+     37c:	83 34       	cpi	r24, 0x43	; 67
+     37e:	40 f5       	brcc	.+80     	; 0x3d0 <EF_S8_DIO_ClearPin+0x66>
+     380:	81 34       	cpi	r24, 0x41	; 65
+     382:	09 f0       	breq	.+2      	; 0x386 <EF_S8_DIO_ClearPin+0x1c>
+     384:	3e c0       	rjmp	.+124    	; 0x402 <EF_S8_DIO_ClearPin+0x98>
+     386:	0c c0       	rjmp	.+24     	; 0x3a0 <EF_S8_DIO_ClearPin+0x36>
+     388:	82 36       	cpi	r24, 0x62	; 98
+     38a:	b1 f0       	breq	.+44     	; 0x3b8 <EF_S8_DIO_ClearPin+0x4e>
+     38c:	83 36       	cpi	r24, 0x63	; 99
+     38e:	18 f4       	brcc	.+6      	; 0x396 <EF_S8_DIO_ClearPin+0x2c>
+     390:	81 36       	cpi	r24, 0x61	; 97
+     392:	b9 f5       	brne	.+110    	; 0x402 <EF_S8_DIO_ClearPin+0x98>
+     394:	05 c0       	rjmp	.+10     	; 0x3a0 <EF_S8_DIO_ClearPin+0x36>
+     396:	83 36       	cpi	r24, 0x63	; 99
+     398:	d9 f0       	breq	.+54     	; 0x3d0 <EF_S8_DIO_ClearPin+0x66>
+     39a:	84 36       	cpi	r24, 0x64	; 100
+     39c:	91 f5       	brne	.+100    	; 0x402 <EF_S8_DIO_ClearPin+0x98>
+     39e:	24 c0       	rjmp	.+72     	; 0x3e8 <EF_S8_DIO_ClearPin+0x7e>
+     3a0:	2b b3       	in	r18, 0x1b	; 27
+     3a2:	81 e0       	ldi	r24, 0x01	; 1
+     3a4:	90 e0       	ldi	r25, 0x00	; 0
+     3a6:	02 c0       	rjmp	.+4      	; 0x3ac <EF_S8_DIO_ClearPin+0x42>
+     3a8:	88 0f       	add	r24, r24
+     3aa:	99 1f       	adc	r25, r25
+     3ac:	6a 95       	dec	r22
+     3ae:	e2 f7       	brpl	.-8      	; 0x3a8 <EF_S8_DIO_ClearPin+0x3e>
+     3b0:	80 95       	com	r24
+     3b2:	82 23       	and	r24, r18
+     3b4:	8b bb       	out	0x1b, r24	; 27
+     3b6:	23 c0       	rjmp	.+70     	; 0x3fe <EF_S8_DIO_ClearPin+0x94>
+     3b8:	28 b3       	in	r18, 0x18	; 24
+     3ba:	81 e0       	ldi	r24, 0x01	; 1
+     3bc:	90 e0       	ldi	r25, 0x00	; 0
+     3be:	02 c0       	rjmp	.+4      	; 0x3c4 <EF_S8_DIO_ClearPin+0x5a>
+     3c0:	88 0f       	add	r24, r24
+     3c2:	99 1f       	adc	r25, r25
+     3c4:	6a 95       	dec	r22
+     3c6:	e2 f7       	brpl	.-8      	; 0x3c0 <EF_S8_DIO_ClearPin+0x56>
+     3c8:	80 95       	com	r24
+     3ca:	82 23       	and	r24, r18
+     3cc:	88 bb       	out	0x18, r24	; 24
+     3ce:	17 c0       	rjmp	.+46     	; 0x3fe <EF_S8_DIO_ClearPin+0x94>
+     3d0:	25 b3       	in	r18, 0x15	; 21
+     3d2:	81 e0       	ldi	r24, 0x01	; 1
+     3d4:	90 e0       	ldi	r25, 0x00	; 0
+     3d6:	02 c0       	rjmp	.+4      	; 0x3dc <EF_S8_DIO_ClearPin+0x72>
+     3d8:	88 0f       	add	r24, r24
+     3da:	99 1f       	adc	r25, r25
+     3dc:	6a 95       	dec	r22
+     3de:	e2 f7       	brpl	.-8      	; 0x3d8 <EF_S8_DIO_ClearPin+0x6e>
+     3e0:	80 95       	com	r24
+     3e2:	82 23       	and	r24, r18
+     3e4:	85 bb       	out	0x15, r24	; 21
+     3e6:	0b c0       	rjmp	.+22     	; 0x3fe <EF_S8_DIO_ClearPin+0x94>
+     3e8:	22 b3       	in	r18, 0x12	; 18
+     3ea:	81 e0       	ldi	r24, 0x01	; 1
+     3ec:	90 e0       	ldi	r25, 0x00	; 0
+     3ee:	02 c0       	rjmp	.+4      	; 0x3f4 <EF_S8_DIO_ClearPin+0x8a>
+     3f0:	88 0f       	add	r24, r24
+     3f2:	99 1f       	adc	r25, r25
+     3f4:	6a 95       	dec	r22
+     3f6:	e2 f7       	brpl	.-8      	; 0x3f0 <EF_S8_DIO_ClearPin+0x86>
+     3f8:	80 95       	com	r24
+     3fa:	82 23       	and	r24, r18
+     3fc:	82 bb       	out	0x12, r24	; 18
+     3fe:	81 e0       	ldi	r24, 0x01	; 1
+     400:	08 95       	ret
+     402:	8f ef       	ldi	r24, 0xFF	; 255
+     404:	08 95       	ret
+
+00000406 <EF_S8_DIO_SetPort>:
+     406:	84 34       	cpi	r24, 0x44	; 68
+     408:	01 f1       	breq	.+64     	; 0x44a <EF_S8_DIO_SetPort+0x44>
+     40a:	85 34       	cpi	r24, 0x45	; 69
+     40c:	38 f4       	brcc	.+14     	; 0x41c <EF_S8_DIO_SetPort+0x16>
+     40e:	82 34       	cpi	r24, 0x42	; 66
+     410:	a9 f0       	breq	.+42     	; 0x43c <EF_S8_DIO_SetPort+0x36>
+     412:	83 34       	cpi	r24, 0x43	; 67
+     414:	b0 f4       	brcc	.+44     	; 0x442 <EF_S8_DIO_SetPort+0x3c>
+     416:	81 34       	cpi	r24, 0x41	; 65
+     418:	61 f4       	brne	.+24     	; 0x432 <EF_S8_DIO_SetPort+0x2c>
+     41a:	0d c0       	rjmp	.+26     	; 0x436 <EF_S8_DIO_SetPort+0x30>
+     41c:	82 36       	cpi	r24, 0x62	; 98
+     41e:	71 f0       	breq	.+28     	; 0x43c <EF_S8_DIO_SetPort+0x36>
+     420:	83 36       	cpi	r24, 0x63	; 99
+     422:	18 f4       	brcc	.+6      	; 0x42a <EF_S8_DIO_SetPort+0x24>
+     424:	81 36       	cpi	r24, 0x61	; 97
+     426:	29 f4       	brne	.+10     	; 0x432 <EF_S8_DIO_SetPort+0x2c>
+     428:	06 c0       	rjmp	.+12     	; 0x436 <EF_S8_DIO_SetPort+0x30>
+     42a:	83 36       	cpi	r24, 0x63	; 99
+     42c:	51 f0       	breq	.+20     	; 0x442 <EF_S8_DIO_SetPort+0x3c>
+     42e:	84 36       	cpi	r24, 0x64	; 100
+     430:	61 f0       	breq	.+24     	; 0x44a <EF_S8_DIO_SetPort+0x44>
+     432:	8f ef       	ldi	r24, 0xFF	; 255
+     434:	08 95       	ret
+     436:	8f ef       	ldi	r24, 0xFF	; 255
+     438:	8b bb       	out	0x1b, r24	; 27
+     43a:	05 c0       	rjmp	.+10     	; 0x446 <EF_S8_DIO_SetPort+0x40>
+     43c:	8f ef       	ldi	r24, 0xFF	; 255
+     43e:	88 bb       	out	0x18, r24	; 24
+     440:	02 c0       	rjmp	.+4      	; 0x446 <EF_S8_DIO_SetPort+0x40>
+     442:	8f ef       	ldi	r24, 0xFF	; 255
+     444:	85 bb       	out	0x15, r24	; 21
+     446:	81 e0       	ldi	r24, 0x01	; 1
+     448:	08 95       	ret
+     44a:	8f ef       	ldi	r24, 0xFF	; 255
+     44c:	82 bb       	out	0x12, r24	; 18
+     44e:	81 e0       	ldi	r24, 0x01	; 1
+     450:	08 95       	ret
+
+00000452 <EF_S8_DIO_ClearPort>:
+     452:	84 34       	cpi	r24, 0x44	; 68
+     454:	e9 f0       	breq	.+58     	; 0x490 <EF_S8_DIO_ClearPort+0x3e>
+     456:	85 34       	cpi	r24, 0x45	; 69
+     458:	38 f4       	brcc	.+14     	; 0x468 <EF_S8_DIO_ClearPort+0x16>
+     45a:	82 34       	cpi	r24, 0x42	; 66
+     45c:	a1 f0       	breq	.+40     	; 0x486 <EF_S8_DIO_ClearPort+0x34>
+     45e:	83 34       	cpi	r24, 0x43	; 67
+     460:	a0 f4       	brcc	.+40     	; 0x48a <EF_S8_DIO_ClearPort+0x38>
+     462:	81 34       	cpi	r24, 0x41	; 65
+     464:	61 f4       	brne	.+24     	; 0x47e <EF_S8_DIO_ClearPort+0x2c>
+     466:	0d c0       	rjmp	.+26     	; 0x482 <EF_S8_DIO_ClearPort+0x30>
+     468:	82 36       	cpi	r24, 0x62	; 98
+     46a:	69 f0       	breq	.+26     	; 0x486 <EF_S8_DIO_ClearPort+0x34>
+     46c:	83 36       	cpi	r24, 0x63	; 99
+     46e:	18 f4       	brcc	.+6      	; 0x476 <EF_S8_DIO_ClearPort+0x24>
+     470:	81 36       	cpi	r24, 0x61	; 97
+     472:	29 f4       	brne	.+10     	; 0x47e <EF_S8_DIO_ClearPort+0x2c>
+     474:	06 c0       	rjmp	.+12     	; 0x482 <EF_S8_DIO_ClearPort+0x30>
+     476:	83 36       	cpi	r24, 0x63	; 99
+     478:	41 f0       	breq	.+16     	; 0x48a <EF_S8_DIO_ClearPort+0x38>
+     47a:	84 36       	cpi	r24, 0x64	; 100
+     47c:	49 f0       	breq	.+18     	; 0x490 <EF_S8_DIO_ClearPort+0x3e>
+     47e:	8f ef       	ldi	r24, 0xFF	; 255
+     480:	08 95       	ret
+     482:	1b ba       	out	0x1b, r1	; 27
+     484:	03 c0       	rjmp	.+6      	; 0x48c <EF_S8_DIO_ClearPort+0x3a>
+     486:	18 ba       	out	0x18, r1	; 24
+     488:	01 c0       	rjmp	.+2      	; 0x48c <EF_S8_DIO_ClearPort+0x3a>
+     48a:	15 ba       	out	0x15, r1	; 21
+     48c:	81 e0       	ldi	r24, 0x01	; 1
+     48e:	08 95       	ret
+     490:	12 ba       	out	0x12, r1	; 18
+     492:	81 e0       	ldi	r24, 0x01	; 1
+     494:	08 95       	ret
+
+00000496 <EF_S8_DIO_TogglePin>:
+     496:	68 30       	cpi	r22, 0x08	; 8
+     498:	08 f0       	brcs	.+2      	; 0x49c <EF_S8_DIO_TogglePin+0x6>
+     49a:	44 c0       	rjmp	.+136    	; 0x524 <EF_S8_DIO_TogglePin+0x8e>
+     49c:	84 34       	cpi	r24, 0x44	; 68
+     49e:	b1 f1       	breq	.+108    	; 0x50c <EF_S8_DIO_TogglePin+0x76>
+     4a0:	85 34       	cpi	r24, 0x45	; 69
+     4a2:	38 f4       	brcc	.+14     	; 0x4b2 <EF_S8_DIO_TogglePin+0x1c>
+     4a4:	82 34       	cpi	r24, 0x42	; 66
+     4a6:	e1 f0       	breq	.+56     	; 0x4e0 <EF_S8_DIO_TogglePin+0x4a>
+     4a8:	83 34       	cpi	r24, 0x43	; 67
+     4aa:	28 f5       	brcc	.+74     	; 0x4f6 <EF_S8_DIO_TogglePin+0x60>
+     4ac:	81 34       	cpi	r24, 0x41	; 65
+     4ae:	d1 f5       	brne	.+116    	; 0x524 <EF_S8_DIO_TogglePin+0x8e>
+     4b0:	0c c0       	rjmp	.+24     	; 0x4ca <EF_S8_DIO_TogglePin+0x34>
+     4b2:	82 36       	cpi	r24, 0x62	; 98
+     4b4:	a9 f0       	breq	.+42     	; 0x4e0 <EF_S8_DIO_TogglePin+0x4a>
+     4b6:	83 36       	cpi	r24, 0x63	; 99
+     4b8:	18 f4       	brcc	.+6      	; 0x4c0 <EF_S8_DIO_TogglePin+0x2a>
+     4ba:	81 36       	cpi	r24, 0x61	; 97
+     4bc:	99 f5       	brne	.+102    	; 0x524 <EF_S8_DIO_TogglePin+0x8e>
+     4be:	05 c0       	rjmp	.+10     	; 0x4ca <EF_S8_DIO_TogglePin+0x34>
+     4c0:	83 36       	cpi	r24, 0x63	; 99
+     4c2:	c9 f0       	breq	.+50     	; 0x4f6 <EF_S8_DIO_TogglePin+0x60>
+     4c4:	84 36       	cpi	r24, 0x64	; 100
+     4c6:	71 f5       	brne	.+92     	; 0x524 <EF_S8_DIO_TogglePin+0x8e>
+     4c8:	21 c0       	rjmp	.+66     	; 0x50c <EF_S8_DIO_TogglePin+0x76>
+     4ca:	2b b3       	in	r18, 0x1b	; 27
+     4cc:	81 e0       	ldi	r24, 0x01	; 1
+     4ce:	90 e0       	ldi	r25, 0x00	; 0
+     4d0:	02 c0       	rjmp	.+4      	; 0x4d6 <EF_S8_DIO_TogglePin+0x40>
+     4d2:	88 0f       	add	r24, r24
+     4d4:	99 1f       	adc	r25, r25
+     4d6:	6a 95       	dec	r22
+     4d8:	e2 f7       	brpl	.-8      	; 0x4d2 <EF_S8_DIO_TogglePin+0x3c>
+     4da:	28 27       	eor	r18, r24
+     4dc:	2b bb       	out	0x1b, r18	; 27
+     4de:	20 c0       	rjmp	.+64     	; 0x520 <EF_S8_DIO_TogglePin+0x8a>
+     4e0:	28 b3       	in	r18, 0x18	; 24
+     4e2:	81 e0       	ldi	r24, 0x01	; 1
+     4e4:	90 e0       	ldi	r25, 0x00	; 0
+     4e6:	02 c0       	rjmp	.+4      	; 0x4ec <EF_S8_DIO_TogglePin+0x56>
+     4e8:	88 0f       	add	r24, r24
+     4ea:	99 1f       	adc	r25, r25
+     4ec:	6a 95       	dec	r22
+     4ee:	e2 f7       	brpl	.-8      	; 0x4e8 <EF_S8_DIO_TogglePin+0x52>
+     4f0:	28 27       	eor	r18, r24
+     4f2:	28 bb       	out	0x18, r18	; 24
+     4f4:	15 c0       	rjmp	.+42     	; 0x520 <EF_S8_DIO_TogglePin+0x8a>
+     4f6:	25 b3       	in	r18, 0x15	; 21
+     4f8:	81 e0       	ldi	r24, 0x01	; 1
+     4fa:	90 e0       	ldi	r25, 0x00	; 0
+     4fc:	02 c0       	rjmp	.+4      	; 0x502 <EF_S8_DIO_TogglePin+0x6c>
+     4fe:	88 0f       	add	r24, r24
+     500:	99 1f       	adc	r25, r25
+     502:	6a 95       	dec	r22
+     504:	e2 f7       	brpl	.-8      	; 0x4fe <EF_S8_DIO_TogglePin+0x68>
+     506:	28 27       	eor	r18, r24
+     508:	25 bb       	out	0x15, r18	; 21
+     50a:	0a c0       	rjmp	.+20     	; 0x520 <EF_S8_DIO_TogglePin+0x8a>
+     50c:	22 b3       	in	r18, 0x12	; 18
+     50e:	81 e0       	ldi	r24, 0x01	; 1
+     510:	90 e0       	ldi	r25, 0x00	; 0
+     512:	02 c0       	rjmp	.+4      	; 0x518 <EF_S8_DIO_TogglePin+0x82>
+     514:	88 0f       	add	r24, r24
+     516:	99 1f       	adc	r25, r25
+     518:	6a 95       	dec	r22
+     51a:	e2 f7       	brpl	.-8      	; 0x514 <EF_S8_DIO_TogglePin+0x7e>
+     51c:	28 27       	eor	r18, r24
+     51e:	22 bb       	out	0x12, r18	; 18
+     520:	81 e0       	ldi	r24, 0x01	; 1
+     522:	08 95       	ret
+     524:	8f ef       	ldi	r24, 0xFF	; 255
+     526:	08 95       	ret
+
+00000528 <EF_S8_DIO_CheckPin>:
+     528:	68 30       	cpi	r22, 0x08	; 8
+     52a:	78 f5       	brcc	.+94     	; 0x58a <EF_S8_DIO_CheckPin+0x62>
+     52c:	84 34       	cpi	r24, 0x44	; 68
+     52e:	d9 f0       	breq	.+54     	; 0x566 <EF_S8_DIO_CheckPin+0x3e>
+     530:	85 34       	cpi	r24, 0x45	; 69
+     532:	38 f4       	brcc	.+14     	; 0x542 <EF_S8_DIO_CheckPin+0x1a>
+     534:	82 34       	cpi	r24, 0x42	; 66
+     536:	99 f0       	breq	.+38     	; 0x55e <EF_S8_DIO_CheckPin+0x36>
+     538:	83 34       	cpi	r24, 0x43	; 67
+     53a:	98 f4       	brcc	.+38     	; 0x562 <EF_S8_DIO_CheckPin+0x3a>
+     53c:	81 34       	cpi	r24, 0x41	; 65
+     53e:	29 f5       	brne	.+74     	; 0x58a <EF_S8_DIO_CheckPin+0x62>
+     540:	0c c0       	rjmp	.+24     	; 0x55a <EF_S8_DIO_CheckPin+0x32>
+     542:	82 36       	cpi	r24, 0x62	; 98
+     544:	61 f0       	breq	.+24     	; 0x55e <EF_S8_DIO_CheckPin+0x36>
+     546:	83 36       	cpi	r24, 0x63	; 99
+     548:	18 f4       	brcc	.+6      	; 0x550 <EF_S8_DIO_CheckPin+0x28>
+     54a:	81 36       	cpi	r24, 0x61	; 97
+     54c:	f1 f4       	brne	.+60     	; 0x58a <EF_S8_DIO_CheckPin+0x62>
+     54e:	05 c0       	rjmp	.+10     	; 0x55a <EF_S8_DIO_CheckPin+0x32>
+     550:	83 36       	cpi	r24, 0x63	; 99
+     552:	39 f0       	breq	.+14     	; 0x562 <EF_S8_DIO_CheckPin+0x3a>
+     554:	84 36       	cpi	r24, 0x64	; 100
+     556:	c9 f4       	brne	.+50     	; 0x58a <EF_S8_DIO_CheckPin+0x62>
+     558:	06 c0       	rjmp	.+12     	; 0x566 <EF_S8_DIO_CheckPin+0x3e>
+     55a:	29 b3       	in	r18, 0x19	; 25
+     55c:	05 c0       	rjmp	.+10     	; 0x568 <EF_S8_DIO_CheckPin+0x40>
+     55e:	26 b3       	in	r18, 0x16	; 22
+     560:	03 c0       	rjmp	.+6      	; 0x568 <EF_S8_DIO_CheckPin+0x40>
+     562:	23 b3       	in	r18, 0x13	; 19
+     564:	01 c0       	rjmp	.+2      	; 0x568 <EF_S8_DIO_CheckPin+0x40>
+     566:	20 b3       	in	r18, 0x10	; 16
+     568:	81 e0       	ldi	r24, 0x01	; 1
+     56a:	90 e0       	ldi	r25, 0x00	; 0
+     56c:	06 2e       	mov	r0, r22
+     56e:	02 c0       	rjmp	.+4      	; 0x574 <EF_S8_DIO_CheckPin+0x4c>
+     570:	88 0f       	add	r24, r24
+     572:	99 1f       	adc	r25, r25
+     574:	0a 94       	dec	r0
+     576:	e2 f7       	brpl	.-8      	; 0x570 <EF_S8_DIO_CheckPin+0x48>
+     578:	30 e0       	ldi	r19, 0x00	; 0
+     57a:	82 23       	and	r24, r18
+     57c:	93 23       	and	r25, r19
+     57e:	02 c0       	rjmp	.+4      	; 0x584 <EF_S8_DIO_CheckPin+0x5c>
+     580:	95 95       	asr	r25
+     582:	87 95       	ror	r24
+     584:	6a 95       	dec	r22
+     586:	e2 f7       	brpl	.-8      	; 0x580 <EF_S8_DIO_CheckPin+0x58>
+     588:	08 95       	ret
+     58a:	8f ef       	ldi	r24, 0xFF	; 255
+     58c:	08 95       	ret
+
+0000058e <EF_void_EEPROM_WriteByte>:
+     58e:	e1 99       	sbic	0x1c, 1	; 28
+     590:	fe cf       	rjmp	.-4      	; 0x58e <EF_void_EEPROM_WriteByte>
+     592:	9f bb       	out	0x1f, r25	; 31
+     594:	8e bb       	out	0x1e, r24	; 30
+     596:	6d bb       	out	0x1d, r22	; 29
+     598:	e2 9a       	sbi	0x1c, 2	; 28
+     59a:	e1 9a       	sbi	0x1c, 1	; 28
+     59c:	08 95       	ret
+
+0000059e <EF_u8_EPROM_ReadByte>:
+     59e:	e1 99       	sbic	0x1c, 1	; 28
+     5a0:	fe cf       	rjmp	.-4      	; 0x59e <EF_u8_EPROM_ReadByte>
+     5a2:	9f bb       	out	0x1f, r25	; 31
+     5a4:	8e bb       	out	0x1e, r24	; 30
+     5a6:	e0 9a       	sbi	0x1c, 0	; 28
+     5a8:	80 ed       	ldi	r24, 0xD0	; 208
+     5aa:	97 e0       	ldi	r25, 0x07	; 7
+     5ac:	01 97       	sbiw	r24, 0x01	; 1
+     5ae:	f1 f7       	brne	.-4      	; 0x5ac <EF_u8_EPROM_ReadByte+0xe>
+     5b0:	8d b3       	in	r24, 0x1d	; 29
+     5b2:	08 95       	ret
+
+000005b4 <EF_void_EEPROM_WriteNBytes>:
+     5b4:	df 92       	push	r13
+     5b6:	ef 92       	push	r14
+     5b8:	ff 92       	push	r15
+     5ba:	0f 93       	push	r16
+     5bc:	1f 93       	push	r17
+     5be:	cf 93       	push	r28
+     5c0:	df 93       	push	r29
+     5c2:	7c 01       	movw	r14, r24
+     5c4:	8b 01       	movw	r16, r22
+     5c6:	d4 2e       	mov	r13, r20
+     5c8:	fb 01       	movw	r30, r22
+     5ca:	80 81       	ld	r24, Z
+     5cc:	88 23       	and	r24, r24
+     5ce:	71 f0       	breq	.+28     	; 0x5ec <EF_void_EEPROM_WriteNBytes+0x38>
+     5d0:	c0 e0       	ldi	r28, 0x00	; 0
+     5d2:	d0 e0       	ldi	r29, 0x00	; 0
+     5d4:	06 c0       	rjmp	.+12     	; 0x5e2 <EF_void_EEPROM_WriteNBytes+0x2e>
+     5d6:	f8 01       	movw	r30, r16
+     5d8:	61 91       	ld	r22, Z+
+     5da:	8f 01       	movw	r16, r30
+     5dc:	0e 94 c7 02 	call	0x58e	; 0x58e <EF_void_EEPROM_WriteByte>
+     5e0:	21 96       	adiw	r28, 0x01	; 1
+     5e2:	ce 01       	movw	r24, r28
+     5e4:	8e 0d       	add	r24, r14
+     5e6:	9f 1d       	adc	r25, r15
+     5e8:	dc 16       	cp	r13, r28
+     5ea:	a9 f7       	brne	.-22     	; 0x5d6 <EF_void_EEPROM_WriteNBytes+0x22>
+     5ec:	df 91       	pop	r29
+     5ee:	cf 91       	pop	r28
+     5f0:	1f 91       	pop	r17
+     5f2:	0f 91       	pop	r16
+     5f4:	ff 90       	pop	r15
+     5f6:	ef 90       	pop	r14
+     5f8:	df 90       	pop	r13
+     5fa:	08 95       	ret
+
+000005fc <EF_void_EEPROM_ReadNBytes>:
+     5fc:	ff 92       	push	r15
+     5fe:	0f 93       	push	r16
+     600:	1f 93       	push	r17
+     602:	cf 93       	push	r28
+     604:	df 93       	push	r29
+     606:	8c 01       	movw	r16, r24
+     608:	eb 01       	movw	r28, r22
+     60a:	f4 2e       	mov	r15, r20
+     60c:	88 81       	ld	r24, Y
+     60e:	88 23       	and	r24, r24
+     610:	41 f4       	brne	.+16     	; 0x622 <EF_void_EEPROM_ReadNBytes+0x26>
+     612:	09 c0       	rjmp	.+18     	; 0x626 <EF_void_EEPROM_ReadNBytes+0x2a>
+     614:	c8 01       	movw	r24, r16
+     616:	0e 94 cf 02 	call	0x59e	; 0x59e <EF_u8_EPROM_ReadByte>
+     61a:	89 93       	st	Y+, r24
+     61c:	0f 5f       	subi	r16, 0xFF	; 255
+     61e:	1f 4f       	sbci	r17, 0xFF	; 255
+     620:	fa 94       	dec	r15
+     622:	ff 20       	and	r15, r15
+     624:	b9 f7       	brne	.-18     	; 0x614 <EF_void_EEPROM_ReadNBytes+0x18>
+     626:	df 91       	pop	r29
+     628:	cf 91       	pop	r28
+     62a:	1f 91       	pop	r17
+     62c:	0f 91       	pop	r16
+     62e:	ff 90       	pop	r15
+     630:	08 95       	ret
+
+00000632 <EF_void_EEPROM_Erase>:
+     632:	cf 93       	push	r28
+     634:	df 93       	push	r29
+     636:	c0 e0       	ldi	r28, 0x00	; 0
+     638:	d0 e0       	ldi	r29, 0x00	; 0
+     63a:	ce 01       	movw	r24, r28
+     63c:	6f ef       	ldi	r22, 0xFF	; 255
+     63e:	0e 94 c7 02 	call	0x58e	; 0x58e <EF_void_EEPROM_WriteByte>
+     642:	21 96       	adiw	r28, 0x01	; 1
+     644:	84 e0       	ldi	r24, 0x04	; 4
+     646:	c0 30       	cpi	r28, 0x00	; 0
+     648:	d8 07       	cpc	r29, r24
+     64a:	b9 f7       	brne	.-18     	; 0x63a <EF_void_EEPROM_Erase+0x8>
+     64c:	df 91       	pop	r29
+     64e:	cf 91       	pop	r28
+     650:	08 95       	ret
+
+00000652 <EF_void_I2C_Write>:
+     652:	83 b9       	out	0x03, r24	; 3
+     654:	84 e8       	ldi	r24, 0x84	; 132
+     656:	86 bf       	out	0x36, r24	; 54
+     658:	06 b6       	in	r0, 0x36	; 54
+     65a:	07 fe       	sbrs	r0, 7
+     65c:	fd cf       	rjmp	.-6      	; 0x658 <EF_void_I2C_Write+0x6>
+     65e:	08 95       	ret
+
+00000660 <EF_void_I2C_Start>:
+     660:	84 ea       	ldi	r24, 0xA4	; 164
+     662:	86 bf       	out	0x36, r24	; 54
+     664:	06 b6       	in	r0, 0x36	; 54
+     666:	07 fe       	sbrs	r0, 7
+     668:	fd cf       	rjmp	.-6      	; 0x664 <EF_void_I2C_Start+0x4>
+     66a:	08 95       	ret
+
+0000066c <EF_void_I2C_Stop>:
+     66c:	84 e9       	ldi	r24, 0x94	; 148
+     66e:	86 bf       	out	0x36, r24	; 54
+     670:	08 95       	ret
+
+00000672 <EF_void_I2C_Init>:
+     672:	11 b8       	out	0x01, r1	; 1
+     674:	87 e4       	ldi	r24, 0x47	; 71
+     676:	80 b9       	out	0x00, r24	; 0
+     678:	84 e0       	ldi	r24, 0x04	; 4
+     67a:	86 bf       	out	0x36, r24	; 54
+     67c:	08 95       	ret
+
+0000067e <EF_U8_I2C_Read_Byte>:
+     67e:	88 23       	and	r24, r24
+     680:	31 f0       	breq	.+12     	; 0x68e <EF_U8_I2C_Read_Byte+0x10>
+     682:	82 95       	swap	r24
+     684:	88 0f       	add	r24, r24
+     686:	88 0f       	add	r24, r24
+     688:	80 7c       	andi	r24, 0xC0	; 192
+     68a:	84 68       	ori	r24, 0x84	; 132
+     68c:	01 c0       	rjmp	.+2      	; 0x690 <EF_U8_I2C_Read_Byte+0x12>
+     68e:	84 e8       	ldi	r24, 0x84	; 132
+     690:	86 bf       	out	0x36, r24	; 54
+     692:	06 b6       	in	r0, 0x36	; 54
+     694:	07 fe       	sbrs	r0, 7
+     696:	fd cf       	rjmp	.-6      	; 0x692 <EF_U8_I2C_Read_Byte+0x14>
+     698:	83 b1       	in	r24, 0x03	; 3
+     69a:	08 95       	ret
+
+0000069c <EF_void_InputCapture_Init>:
+     69c:	1f bc       	out	0x2f, r1	; 47
+     69e:	08 95       	ret
+
+000006a0 <EF_BOOLEAN_InputCapture_GetPeriod>:
+     6a0:	cf 92       	push	r12
+     6a2:	df 92       	push	r13
+     6a4:	ef 92       	push	r14
+     6a6:	ff 92       	push	r15
+     6a8:	1f 93       	push	r17
+     6aa:	cf 93       	push	r28
+     6ac:	df 93       	push	r29
+     6ae:	6c 01       	movw	r12, r24
+     6b0:	eb 01       	movw	r28, r22
+     6b2:	83 e4       	ldi	r24, 0x43	; 67
+     6b4:	8e bd       	out	0x2e, r24	; 46
+     6b6:	85 e0       	ldi	r24, 0x05	; 5
+     6b8:	0e 94 a2 04 	call	0x944	; 0x944 <EF_void_TimerCreate>
+     6bc:	85 e0       	ldi	r24, 0x05	; 5
+     6be:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     6c2:	08 b6       	in	r0, 0x38	; 56
+     6c4:	05 fc       	sbrc	r0, 5
+     6c6:	05 c0       	rjmp	.+10     	; 0x6d2 <EF_BOOLEAN_InputCapture_GetPeriod+0x32>
+     6c8:	85 e0       	ldi	r24, 0x05	; 5
+     6ca:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     6ce:	88 23       	and	r24, r24
+     6d0:	c1 f3       	breq	.-16     	; 0x6c2 <EF_BOOLEAN_InputCapture_GetPeriod+0x22>
+     6d2:	85 e0       	ldi	r24, 0x05	; 5
+     6d4:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     6d8:	18 2f       	mov	r17, r24
+     6da:	85 e0       	ldi	r24, 0x05	; 5
+     6dc:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     6e0:	85 e0       	ldi	r24, 0x05	; 5
+     6e2:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     6e6:	e6 b4       	in	r14, 0x26	; 38
+     6e8:	f7 b4       	in	r15, 0x27	; 39
+     6ea:	88 b7       	in	r24, 0x38	; 56
+     6ec:	80 62       	ori	r24, 0x20	; 32
+     6ee:	88 bf       	out	0x38, r24	; 56
+     6f0:	11 30       	cpi	r17, 0x01	; 1
+     6f2:	11 f4       	brne	.+4      	; 0x6f8 <EF_BOOLEAN_InputCapture_GetPeriod+0x58>
+     6f4:	10 e0       	ldi	r17, 0x00	; 0
+     6f6:	26 c0       	rjmp	.+76     	; 0x744 <EF_BOOLEAN_InputCapture_GetPeriod+0xa4>
+     6f8:	85 e0       	ldi	r24, 0x05	; 5
+     6fa:	be 01       	movw	r22, r28
+     6fc:	0e 94 a2 04 	call	0x944	; 0x944 <EF_void_TimerCreate>
+     700:	85 e0       	ldi	r24, 0x05	; 5
+     702:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     706:	08 b6       	in	r0, 0x38	; 56
+     708:	05 fc       	sbrc	r0, 5
+     70a:	05 c0       	rjmp	.+10     	; 0x716 <EF_BOOLEAN_InputCapture_GetPeriod+0x76>
+     70c:	85 e0       	ldi	r24, 0x05	; 5
+     70e:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     712:	88 23       	and	r24, r24
+     714:	c1 f3       	breq	.-16     	; 0x706 <EF_BOOLEAN_InputCapture_GetPeriod+0x66>
+     716:	85 e0       	ldi	r24, 0x05	; 5
+     718:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     71c:	10 e0       	ldi	r17, 0x00	; 0
+     71e:	81 30       	cpi	r24, 0x01	; 1
+     720:	09 f0       	breq	.+2      	; 0x724 <EF_BOOLEAN_InputCapture_GetPeriod+0x84>
+     722:	11 e0       	ldi	r17, 0x01	; 1
+     724:	85 e0       	ldi	r24, 0x05	; 5
+     726:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     72a:	85 e0       	ldi	r24, 0x05	; 5
+     72c:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     730:	86 b5       	in	r24, 0x26	; 38
+     732:	97 b5       	in	r25, 0x27	; 39
+     734:	8e 19       	sub	r24, r14
+     736:	9f 09       	sbc	r25, r15
+     738:	f6 01       	movw	r30, r12
+     73a:	91 83       	std	Z+1, r25	; 0x01
+     73c:	80 83       	st	Z, r24
+     73e:	88 b7       	in	r24, 0x38	; 56
+     740:	80 62       	ori	r24, 0x20	; 32
+     742:	88 bf       	out	0x38, r24	; 56
+     744:	81 2f       	mov	r24, r17
+     746:	df 91       	pop	r29
+     748:	cf 91       	pop	r28
+     74a:	1f 91       	pop	r17
+     74c:	ff 90       	pop	r15
+     74e:	ef 90       	pop	r14
+     750:	df 90       	pop	r13
+     752:	cf 90       	pop	r12
+     754:	08 95       	ret
+
+00000756 <EF_BOOLEAN_InputCapture_GetPulse>:
+     756:	cf 92       	push	r12
+     758:	df 92       	push	r13
+     75a:	ef 92       	push	r14
+     75c:	ff 92       	push	r15
+     75e:	1f 93       	push	r17
+     760:	cf 93       	push	r28
+     762:	df 93       	push	r29
+     764:	6c 01       	movw	r12, r24
+     766:	eb 01       	movw	r28, r22
+     768:	83 e4       	ldi	r24, 0x43	; 67
+     76a:	8e bd       	out	0x2e, r24	; 46
+     76c:	85 e0       	ldi	r24, 0x05	; 5
+     76e:	0e 94 a2 04 	call	0x944	; 0x944 <EF_void_TimerCreate>
+     772:	85 e0       	ldi	r24, 0x05	; 5
+     774:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     778:	08 b6       	in	r0, 0x38	; 56
+     77a:	05 fc       	sbrc	r0, 5
+     77c:	05 c0       	rjmp	.+10     	; 0x788 <EF_BOOLEAN_InputCapture_GetPulse+0x32>
+     77e:	85 e0       	ldi	r24, 0x05	; 5
+     780:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     784:	88 23       	and	r24, r24
+     786:	c1 f3       	breq	.-16     	; 0x778 <EF_BOOLEAN_InputCapture_GetPulse+0x22>
+     788:	85 e0       	ldi	r24, 0x05	; 5
+     78a:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     78e:	18 2f       	mov	r17, r24
+     790:	85 e0       	ldi	r24, 0x05	; 5
+     792:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     796:	85 e0       	ldi	r24, 0x05	; 5
+     798:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     79c:	e6 b4       	in	r14, 0x26	; 38
+     79e:	f7 b4       	in	r15, 0x27	; 39
+     7a0:	88 b7       	in	r24, 0x38	; 56
+     7a2:	80 62       	ori	r24, 0x20	; 32
+     7a4:	88 bf       	out	0x38, r24	; 56
+     7a6:	11 30       	cpi	r17, 0x01	; 1
+     7a8:	11 f4       	brne	.+4      	; 0x7ae <EF_BOOLEAN_InputCapture_GetPulse+0x58>
+     7aa:	10 e0       	ldi	r17, 0x00	; 0
+     7ac:	28 c0       	rjmp	.+80     	; 0x7fe <EF_BOOLEAN_InputCapture_GetPulse+0xa8>
+     7ae:	83 e0       	ldi	r24, 0x03	; 3
+     7b0:	8e bd       	out	0x2e, r24	; 46
+     7b2:	85 e0       	ldi	r24, 0x05	; 5
+     7b4:	be 01       	movw	r22, r28
+     7b6:	0e 94 a2 04 	call	0x944	; 0x944 <EF_void_TimerCreate>
+     7ba:	85 e0       	ldi	r24, 0x05	; 5
+     7bc:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     7c0:	08 b6       	in	r0, 0x38	; 56
+     7c2:	05 fc       	sbrc	r0, 5
+     7c4:	05 c0       	rjmp	.+10     	; 0x7d0 <EF_BOOLEAN_InputCapture_GetPulse+0x7a>
+     7c6:	85 e0       	ldi	r24, 0x05	; 5
+     7c8:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     7cc:	88 23       	and	r24, r24
+     7ce:	c1 f3       	breq	.-16     	; 0x7c0 <EF_BOOLEAN_InputCapture_GetPulse+0x6a>
+     7d0:	85 e0       	ldi	r24, 0x05	; 5
+     7d2:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     7d6:	10 e0       	ldi	r17, 0x00	; 0
+     7d8:	81 30       	cpi	r24, 0x01	; 1
+     7da:	09 f0       	breq	.+2      	; 0x7de <EF_BOOLEAN_InputCapture_GetPulse+0x88>
+     7dc:	11 e0       	ldi	r17, 0x01	; 1
+     7de:	85 e0       	ldi	r24, 0x05	; 5
+     7e0:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     7e4:	85 e0       	ldi	r24, 0x05	; 5
+     7e6:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     7ea:	86 b5       	in	r24, 0x26	; 38
+     7ec:	97 b5       	in	r25, 0x27	; 39
+     7ee:	8e 19       	sub	r24, r14
+     7f0:	9f 09       	sbc	r25, r15
+     7f2:	f6 01       	movw	r30, r12
+     7f4:	91 83       	std	Z+1, r25	; 0x01
+     7f6:	80 83       	st	Z, r24
+     7f8:	88 b7       	in	r24, 0x38	; 56
+     7fa:	80 62       	ori	r24, 0x20	; 32
+     7fc:	88 bf       	out	0x38, r24	; 56
+     7fe:	81 2f       	mov	r24, r17
+     800:	df 91       	pop	r29
+     802:	cf 91       	pop	r28
+     804:	1f 91       	pop	r17
+     806:	ff 90       	pop	r15
+     808:	ef 90       	pop	r14
+     80a:	df 90       	pop	r13
+     80c:	cf 90       	pop	r12
+     80e:	08 95       	ret
+
+00000810 <EF_void_PWM_init>:
+     810:	81 30       	cpi	r24, 0x01	; 1
+     812:	91 f0       	breq	.+36     	; 0x838 <EF_void_PWM_init+0x28>
+     814:	81 30       	cpi	r24, 0x01	; 1
+     816:	50 f0       	brcs	.+20     	; 0x82c <EF_void_PWM_init+0x1c>
+     818:	82 30       	cpi	r24, 0x02	; 2
+     81a:	c1 f0       	breq	.+48     	; 0x84c <EF_void_PWM_init+0x3c>
+     81c:	83 30       	cpi	r24, 0x03	; 3
+     81e:	f9 f4       	brne	.+62     	; 0x85e <EF_void_PWM_init+0x4e>
+     820:	8f 9a       	sbi	0x11, 7	; 17
+     822:	15 bc       	out	0x25, r1	; 37
+     824:	89 e6       	ldi	r24, 0x69	; 105
+     826:	85 bd       	out	0x25, r24	; 37
+     828:	14 bc       	out	0x24, r1	; 36
+     82a:	08 95       	ret
+     82c:	bb 9a       	sbi	0x17, 3	; 23
+     82e:	13 be       	out	0x33, r1	; 51
+     830:	8b e6       	ldi	r24, 0x6B	; 107
+     832:	83 bf       	out	0x33, r24	; 51
+     834:	12 be       	out	0x32, r1	; 50
+     836:	08 95       	ret
+     838:	8d 9a       	sbi	0x11, 5	; 17
+     83a:	8f b5       	in	r24, 0x2f	; 47
+     83c:	81 68       	ori	r24, 0x81	; 129
+     83e:	8f bd       	out	0x2f, r24	; 47
+     840:	8e b5       	in	r24, 0x2e	; 46
+     842:	8b 60       	ori	r24, 0x0B	; 11
+     844:	8e bd       	out	0x2e, r24	; 46
+     846:	1d bc       	out	0x2d, r1	; 45
+     848:	1c bc       	out	0x2c, r1	; 44
+     84a:	08 95       	ret
+     84c:	8c 9a       	sbi	0x11, 4	; 17
+     84e:	8f b5       	in	r24, 0x2f	; 47
+     850:	81 62       	ori	r24, 0x21	; 33
+     852:	8f bd       	out	0x2f, r24	; 47
+     854:	8e b5       	in	r24, 0x2e	; 46
+     856:	8b 60       	ori	r24, 0x0B	; 11
+     858:	8e bd       	out	0x2e, r24	; 46
+     85a:	1d bc       	out	0x2d, r1	; 45
+     85c:	1c bc       	out	0x2c, r1	; 44
+     85e:	08 95       	ret
+
+00000860 <EF_void_PWM_SetDutyValue>:
+     860:	61 30       	cpi	r22, 0x01	; 1
+     862:	51 f0       	breq	.+20     	; 0x878 <EF_void_PWM_SetDutyValue+0x18>
+     864:	61 30       	cpi	r22, 0x01	; 1
+     866:	30 f0       	brcs	.+12     	; 0x874 <EF_void_PWM_SetDutyValue+0x14>
+     868:	62 30       	cpi	r22, 0x02	; 2
+     86a:	51 f0       	breq	.+20     	; 0x880 <EF_void_PWM_SetDutyValue+0x20>
+     86c:	63 30       	cpi	r22, 0x03	; 3
+     86e:	59 f4       	brne	.+22     	; 0x886 <EF_void_PWM_SetDutyValue+0x26>
+     870:	83 bd       	out	0x23, r24	; 35
+     872:	08 95       	ret
+     874:	8c bf       	out	0x3c, r24	; 60
+     876:	08 95       	ret
+     878:	90 e0       	ldi	r25, 0x00	; 0
+     87a:	9b bd       	out	0x2b, r25	; 43
+     87c:	8a bd       	out	0x2a, r24	; 42
+     87e:	08 95       	ret
+     880:	90 e0       	ldi	r25, 0x00	; 0
+     882:	99 bd       	out	0x29, r25	; 41
+     884:	88 bd       	out	0x28, r24	; 40
+     886:	08 95       	ret
+
+00000888 <EF_void_PWM_SetDutyCycle>:
+     888:	26 2f       	mov	r18, r22
+     88a:	9f ef       	ldi	r25, 0xFF	; 255
+     88c:	89 9f       	mul	r24, r25
+     88e:	c0 01       	movw	r24, r0
+     890:	11 24       	eor	r1, r1
+     892:	64 e6       	ldi	r22, 0x64	; 100
+     894:	70 e0       	ldi	r23, 0x00	; 0
+     896:	0e 94 55 0b 	call	0x16aa	; 0x16aa <__divmodhi4>
+     89a:	22 23       	and	r18, r18
+     89c:	21 f0       	breq	.+8      	; 0x8a6 <EF_void_PWM_SetDutyCycle+0x1e>
+     89e:	23 30       	cpi	r18, 0x03	; 3
+     8a0:	19 f4       	brne	.+6      	; 0x8a8 <EF_void_PWM_SetDutyCycle+0x20>
+     8a2:	63 bd       	out	0x23, r22	; 35
+     8a4:	08 95       	ret
+     8a6:	6c bf       	out	0x3c, r22	; 60
+     8a8:	08 95       	ret
+
+000008aa <EF_SpiTransfer>:
+     8aa:	8f b9       	out	0x0f, r24	; 15
+     8ac:	77 9b       	sbis	0x0e, 7	; 14
+     8ae:	fe cf       	rjmp	.-4      	; 0x8ac <EF_SpiTransfer+0x2>
+     8b0:	8f b1       	in	r24, 0x0f	; 15
+     8b2:	08 95       	ret
+
+000008b4 <EF_BOOLEAN_SpiTransfer>:
+     8b4:	cf 93       	push	r28
+     8b6:	df 93       	push	r29
+     8b8:	ec 01       	movw	r28, r24
+     8ba:	87 e0       	ldi	r24, 0x07	; 7
+     8bc:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     8c0:	88 81       	ld	r24, Y
+     8c2:	8f b9       	out	0x0f, r24	; 15
+     8c4:	77 99       	sbic	0x0e, 7	; 14
+     8c6:	05 c0       	rjmp	.+10     	; 0x8d2 <EF_BOOLEAN_SpiTransfer+0x1e>
+     8c8:	87 e0       	ldi	r24, 0x07	; 7
+     8ca:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     8ce:	88 23       	and	r24, r24
+     8d0:	c9 f3       	breq	.-14     	; 0x8c4 <EF_BOOLEAN_SpiTransfer+0x10>
+     8d2:	87 e0       	ldi	r24, 0x07	; 7
+     8d4:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     8d8:	87 e0       	ldi	r24, 0x07	; 7
+     8da:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     8de:	8e b1       	in	r24, 0x0e	; 14
+     8e0:	9f b1       	in	r25, 0x0f	; 15
+     8e2:	98 83       	st	Y, r25
+     8e4:	88 1f       	adc	r24, r24
+     8e6:	88 27       	eor	r24, r24
+     8e8:	88 1f       	adc	r24, r24
+     8ea:	df 91       	pop	r29
+     8ec:	cf 91       	pop	r28
+     8ee:	08 95       	ret
+
+000008f0 <EF_SpiInit>:
+     8f0:	93 e6       	ldi	r25, 0x63	; 99
+     8f2:	9d b9       	out	0x0d, r25	; 13
+     8f4:	81 30       	cpi	r24, 0x01	; 1
+     8f6:	29 f4       	brne	.+10     	; 0x902 <EF_SpiInit+0x12>
+     8f8:	6c 9a       	sbi	0x0d, 4	; 13
+     8fa:	87 b3       	in	r24, 0x17	; 23
+     8fc:	80 6b       	ori	r24, 0xB0	; 176
+     8fe:	87 bb       	out	0x17, r24	; 23
+     900:	01 c0       	rjmp	.+2      	; 0x904 <EF_SpiInit+0x14>
+     902:	be 9a       	sbi	0x17, 6	; 23
+     904:	87 e0       	ldi	r24, 0x07	; 7
+     906:	65 e0       	ldi	r22, 0x05	; 5
+     908:	70 e0       	ldi	r23, 0x00	; 0
+     90a:	0e 94 a2 04 	call	0x944	; 0x944 <EF_void_TimerCreate>
+     90e:	08 95       	ret
+
+00000910 <EF_void_TimerDelete>:
+     910:	90 e0       	ldi	r25, 0x00	; 0
+     912:	fc 01       	movw	r30, r24
+     914:	ee 0f       	add	r30, r30
+     916:	ff 1f       	adc	r31, r31
+     918:	e8 0f       	add	r30, r24
+     91a:	f9 1f       	adc	r31, r25
+     91c:	df 01       	movw	r26, r30
+     91e:	11 96       	adiw	r26, 0x01	; 1
+     920:	80 eb       	ldi	r24, 0xB0	; 176
+     922:	90 e0       	ldi	r25, 0x00	; 0
+     924:	aa 0f       	add	r26, r26
+     926:	bb 1f       	adc	r27, r27
+     928:	a8 0f       	add	r26, r24
+     92a:	b9 1f       	adc	r27, r25
+     92c:	11 96       	adiw	r26, 0x01	; 1
+     92e:	1c 92       	st	X, r1
+     930:	1e 92       	st	-X, r1
+     932:	ee 0f       	add	r30, r30
+     934:	ff 1f       	adc	r31, r31
+     936:	e8 0f       	add	r30, r24
+     938:	f9 1f       	adc	r31, r25
+     93a:	11 82       	std	Z+1, r1	; 0x01
+     93c:	10 82       	st	Z, r1
+     93e:	14 82       	std	Z+4, r1	; 0x04
+     940:	15 82       	std	Z+5, r1	; 0x05
+     942:	08 95       	ret
+
+00000944 <EF_void_TimerCreate>:
+     944:	90 e0       	ldi	r25, 0x00	; 0
+     946:	fc 01       	movw	r30, r24
+     948:	ee 0f       	add	r30, r30
+     94a:	ff 1f       	adc	r31, r31
+     94c:	e8 0f       	add	r30, r24
+     94e:	f9 1f       	adc	r31, r25
+     950:	df 01       	movw	r26, r30
+     952:	aa 0f       	add	r26, r26
+     954:	bb 1f       	adc	r27, r27
+     956:	a0 55       	subi	r26, 0x50	; 80
+     958:	bf 4f       	sbci	r27, 0xFF	; 255
+     95a:	8d 91       	ld	r24, X+
+     95c:	9c 91       	ld	r25, X
+     95e:	11 97       	sbiw	r26, 0x01	; 1
+     960:	89 2b       	or	r24, r25
+     962:	71 f4       	brne	.+28     	; 0x980 <EF_void_TimerCreate+0x3c>
+     964:	11 96       	adiw	r26, 0x01	; 1
+     966:	7c 93       	st	X, r23
+     968:	6e 93       	st	-X, r22
+     96a:	ee 0f       	add	r30, r30
+     96c:	ff 1f       	adc	r31, r31
+     96e:	ee 54       	subi	r30, 0x4E	; 78
+     970:	ff 4f       	sbci	r31, 0xFF	; 255
+     972:	11 82       	std	Z+1, r1	; 0x01
+     974:	10 82       	st	Z, r1
+     976:	14 96       	adiw	r26, 0x04	; 4
+     978:	1c 92       	st	X, r1
+     97a:	14 97       	sbiw	r26, 0x04	; 4
+     97c:	15 96       	adiw	r26, 0x05	; 5
+     97e:	1c 92       	st	X, r1
+     980:	08 95       	ret
+
+00000982 <EF_void_TimersUpdate>:
+     982:	40 e0       	ldi	r20, 0x00	; 0
+     984:	50 e0       	ldi	r21, 0x00	; 0
+     986:	9a 01       	movw	r18, r20
+     988:	22 0f       	add	r18, r18
+     98a:	33 1f       	adc	r19, r19
+     98c:	24 0f       	add	r18, r20
+     98e:	35 1f       	adc	r19, r21
+     990:	d9 01       	movw	r26, r18
+     992:	aa 0f       	add	r26, r26
+     994:	bb 1f       	adc	r27, r27
+     996:	a0 55       	subi	r26, 0x50	; 80
+     998:	bf 4f       	sbci	r27, 0xFF	; 255
+     99a:	15 96       	adiw	r26, 0x05	; 5
+     99c:	6c 91       	ld	r22, X
+     99e:	15 97       	sbiw	r26, 0x05	; 5
+     9a0:	61 30       	cpi	r22, 0x01	; 1
+     9a2:	b1 f4       	brne	.+44     	; 0x9d0 <EF_void_TimersUpdate+0x4e>
+     9a4:	f9 01       	movw	r30, r18
+     9a6:	ee 0f       	add	r30, r30
+     9a8:	ff 1f       	adc	r31, r31
+     9aa:	ee 54       	subi	r30, 0x4E	; 78
+     9ac:	ff 4f       	sbci	r31, 0xFF	; 255
+     9ae:	80 81       	ld	r24, Z
+     9b0:	91 81       	ldd	r25, Z+1	; 0x01
+     9b2:	01 96       	adiw	r24, 0x01	; 1
+     9b4:	91 83       	std	Z+1, r25	; 0x01
+     9b6:	80 83       	st	Z, r24
+     9b8:	20 81       	ld	r18, Z
+     9ba:	31 81       	ldd	r19, Z+1	; 0x01
+     9bc:	8d 91       	ld	r24, X+
+     9be:	9c 91       	ld	r25, X
+     9c0:	11 97       	sbiw	r26, 0x01	; 1
+     9c2:	28 17       	cp	r18, r24
+     9c4:	39 07       	cpc	r19, r25
+     9c6:	21 f4       	brne	.+8      	; 0x9d0 <EF_void_TimersUpdate+0x4e>
+     9c8:	11 82       	std	Z+1, r1	; 0x01
+     9ca:	10 82       	st	Z, r1
+     9cc:	14 96       	adiw	r26, 0x04	; 4
+     9ce:	6c 93       	st	X, r22
+     9d0:	4f 5f       	subi	r20, 0xFF	; 255
+     9d2:	5f 4f       	sbci	r21, 0xFF	; 255
+     9d4:	4a 30       	cpi	r20, 0x0A	; 10
+     9d6:	51 05       	cpc	r21, r1
+     9d8:	b1 f6       	brne	.-84     	; 0x986 <EF_void_TimersUpdate+0x4>
+     9da:	08 95       	ret
+
+000009dc <EF_void_TimerISRCallback>:
+     9dc:	0e 94 c1 04 	call	0x982	; 0x982 <EF_void_TimersUpdate>
+     9e0:	08 95       	ret
+
+000009e2 <EF_BOOLEAN_TimerCheck>:
+     9e2:	90 e0       	ldi	r25, 0x00	; 0
+     9e4:	fc 01       	movw	r30, r24
+     9e6:	ee 0f       	add	r30, r30
+     9e8:	ff 1f       	adc	r31, r31
+     9ea:	e8 0f       	add	r30, r24
+     9ec:	f9 1f       	adc	r31, r25
+     9ee:	ee 0f       	add	r30, r30
+     9f0:	ff 1f       	adc	r31, r31
+     9f2:	e0 55       	subi	r30, 0x50	; 80
+     9f4:	ff 4f       	sbci	r31, 0xFF	; 255
+     9f6:	84 81       	ldd	r24, Z+4	; 0x04
+     9f8:	88 23       	and	r24, r24
+     9fa:	11 f0       	breq	.+4      	; 0xa00 <EF_BOOLEAN_TimerCheck+0x1e>
+     9fc:	14 82       	std	Z+4, r1	; 0x04
+     9fe:	81 e0       	ldi	r24, 0x01	; 1
+     a00:	08 95       	ret
+
+00000a02 <EF_void_TimerStart>:
+     a02:	90 e0       	ldi	r25, 0x00	; 0
+     a04:	fc 01       	movw	r30, r24
+     a06:	ee 0f       	add	r30, r30
+     a08:	ff 1f       	adc	r31, r31
+     a0a:	e8 0f       	add	r30, r24
+     a0c:	f9 1f       	adc	r31, r25
+     a0e:	ee 0f       	add	r30, r30
+     a10:	ff 1f       	adc	r31, r31
+     a12:	e0 55       	subi	r30, 0x50	; 80
+     a14:	ff 4f       	sbci	r31, 0xFF	; 255
+     a16:	80 81       	ld	r24, Z
+     a18:	91 81       	ldd	r25, Z+1	; 0x01
+     a1a:	89 2b       	or	r24, r25
+     a1c:	11 f0       	breq	.+4      	; 0xa22 <EF_void_TimerStart+0x20>
+     a1e:	81 e0       	ldi	r24, 0x01	; 1
+     a20:	85 83       	std	Z+5, r24	; 0x05
+     a22:	08 95       	ret
+
+00000a24 <EF_void_TimerStop>:
+     a24:	90 e0       	ldi	r25, 0x00	; 0
+     a26:	fc 01       	movw	r30, r24
+     a28:	ee 0f       	add	r30, r30
+     a2a:	ff 1f       	adc	r31, r31
+     a2c:	e8 0f       	add	r30, r24
+     a2e:	f9 1f       	adc	r31, r25
+     a30:	ee 0f       	add	r30, r30
+     a32:	ff 1f       	adc	r31, r31
+     a34:	e0 55       	subi	r30, 0x50	; 80
+     a36:	ff 4f       	sbci	r31, 0xFF	; 255
+     a38:	15 82       	std	Z+5, r1	; 0x05
+     a3a:	08 95       	ret
+
+00000a3c <EF_void_TimerReset>:
+     a3c:	90 e0       	ldi	r25, 0x00	; 0
+     a3e:	fc 01       	movw	r30, r24
+     a40:	ee 0f       	add	r30, r30
+     a42:	ff 1f       	adc	r31, r31
+     a44:	e8 0f       	add	r30, r24
+     a46:	f9 1f       	adc	r31, r25
+     a48:	ee 0f       	add	r30, r30
+     a4a:	ff 1f       	adc	r31, r31
+     a4c:	ee 54       	subi	r30, 0x4E	; 78
+     a4e:	ff 4f       	sbci	r31, 0xFF	; 255
+     a50:	11 82       	std	Z+1, r1	; 0x01
+     a52:	10 82       	st	Z, r1
+     a54:	08 95       	ret
+
+00000a56 <EF_void_TimerInit>:
+     a56:	0e 94 4b 05 	call	0xa96	; 0xa96 <EF_void_Timer_PORTinit>
+     a5a:	8e ee       	ldi	r24, 0xEE	; 238
+     a5c:	94 e0       	ldi	r25, 0x04	; 4
+     a5e:	0e 94 58 05 	call	0xab0	; 0xab0 <EF_void_Timer_SetISRCallBack>
+     a62:	80 e0       	ldi	r24, 0x00	; 0
+     a64:	90 e0       	ldi	r25, 0x00	; 0
+     a66:	fc 01       	movw	r30, r24
+     a68:	ee 0f       	add	r30, r30
+     a6a:	ff 1f       	adc	r31, r31
+     a6c:	e8 0f       	add	r30, r24
+     a6e:	f9 1f       	adc	r31, r25
+     a70:	ee 0f       	add	r30, r30
+     a72:	ff 1f       	adc	r31, r31
+     a74:	df 01       	movw	r26, r30
+     a76:	ae 54       	subi	r26, 0x4E	; 78
+     a78:	bf 4f       	sbci	r27, 0xFF	; 255
+     a7a:	11 96       	adiw	r26, 0x01	; 1
+     a7c:	1c 92       	st	X, r1
+     a7e:	1e 92       	st	-X, r1
+     a80:	e0 55       	subi	r30, 0x50	; 80
+     a82:	ff 4f       	sbci	r31, 0xFF	; 255
+     a84:	11 82       	std	Z+1, r1	; 0x01
+     a86:	10 82       	st	Z, r1
+     a88:	14 82       	std	Z+4, r1	; 0x04
+     a8a:	15 82       	std	Z+5, r1	; 0x05
+     a8c:	01 96       	adiw	r24, 0x01	; 1
+     a8e:	8a 30       	cpi	r24, 0x0A	; 10
+     a90:	91 05       	cpc	r25, r1
+     a92:	49 f7       	brne	.-46     	; 0xa66 <EF_void_TimerInit+0x10>
+     a94:	08 95       	ret
+
+00000a96 <EF_void_Timer_PORTinit>:
+     a96:	85 b5       	in	r24, 0x25	; 37
+     a98:	87 60       	ori	r24, 0x07	; 7
+     a9a:	85 bd       	out	0x25, r24	; 37
+     a9c:	89 e7       	ldi	r24, 0x79	; 121
+     a9e:	84 bd       	out	0x24, r24	; 36
+     aa0:	89 b7       	in	r24, 0x39	; 57
+     aa2:	80 64       	ori	r24, 0x40	; 64
+     aa4:	89 bf       	out	0x39, r24	; 57
+     aa6:	88 b7       	in	r24, 0x38	; 56
+     aa8:	80 64       	ori	r24, 0x40	; 64
+     aaa:	88 bf       	out	0x38, r24	; 56
+     aac:	78 94       	sei
+     aae:	08 95       	ret
+
+00000ab0 <EF_void_Timer_SetISRCallBack>:
+     ab0:	90 93 ed 00 	sts	0x00ED, r25
+     ab4:	80 93 ec 00 	sts	0x00EC, r24
+     ab8:	08 95       	ret
+
+00000aba <EF_void_Timer_RemoveTimerISRCallBack>:
+     aba:	10 92 ed 00 	sts	0x00ED, r1
+     abe:	10 92 ec 00 	sts	0x00EC, r1
+     ac2:	08 95       	ret
+
+00000ac4 <__vector_5>:
+     ac4:	1f 92       	push	r1
+     ac6:	0f 92       	push	r0
+     ac8:	0f b6       	in	r0, 0x3f	; 63
+     aca:	0f 92       	push	r0
+     acc:	11 24       	eor	r1, r1
+     ace:	2f 93       	push	r18
+     ad0:	3f 93       	push	r19
+     ad2:	4f 93       	push	r20
+     ad4:	5f 93       	push	r21
+     ad6:	6f 93       	push	r22
+     ad8:	7f 93       	push	r23
+     ada:	8f 93       	push	r24
+     adc:	9f 93       	push	r25
+     ade:	af 93       	push	r26
+     ae0:	bf 93       	push	r27
+     ae2:	ef 93       	push	r30
+     ae4:	ff 93       	push	r31
+     ae6:	e0 91 ec 00 	lds	r30, 0x00EC
+     aea:	f0 91 ed 00 	lds	r31, 0x00ED
+     aee:	30 97       	sbiw	r30, 0x00	; 0
+     af0:	09 f0       	breq	.+2      	; 0xaf4 <__vector_5+0x30>
+     af2:	09 95       	icall
+     af4:	89 e7       	ldi	r24, 0x79	; 121
+     af6:	84 bd       	out	0x24, r24	; 36
+     af8:	88 b7       	in	r24, 0x38	; 56
+     afa:	80 64       	ori	r24, 0x40	; 64
+     afc:	88 bf       	out	0x38, r24	; 56
+     afe:	ff 91       	pop	r31
+     b00:	ef 91       	pop	r30
+     b02:	bf 91       	pop	r27
+     b04:	af 91       	pop	r26
+     b06:	9f 91       	pop	r25
+     b08:	8f 91       	pop	r24
+     b0a:	7f 91       	pop	r23
+     b0c:	6f 91       	pop	r22
+     b0e:	5f 91       	pop	r21
+     b10:	4f 91       	pop	r20
+     b12:	3f 91       	pop	r19
+     b14:	2f 91       	pop	r18
+     b16:	0f 90       	pop	r0
+     b18:	0f be       	out	0x3f, r0	; 63
+     b1a:	0f 90       	pop	r0
+     b1c:	1f 90       	pop	r1
+     b1e:	18 95       	reti
+
+00000b20 <EF_u8_UART_WaitChar>:
+     b20:	5f 9b       	sbis	0x0b, 7	; 11
+     b22:	fe cf       	rjmp	.-4      	; 0xb20 <EF_u8_UART_WaitChar>
+     b24:	8c b1       	in	r24, 0x0c	; 12
+     b26:	08 95       	ret
+
+00000b28 <EF_void_UART_PutChar>:
+     b28:	5d 9b       	sbis	0x0b, 5	; 11
+     b2a:	fe cf       	rjmp	.-4      	; 0xb28 <EF_void_UART_PutChar>
+     b2c:	8c b9       	out	0x0c, r24	; 12
+     b2e:	08 95       	ret
+
+00000b30 <EF_void_UART_SendArray>:
+     b30:	fc 01       	movw	r30, r24
+     b32:	80 e0       	ldi	r24, 0x00	; 0
+     b34:	06 c0       	rjmp	.+12     	; 0xb42 <EF_void_UART_SendArray+0x12>
+     b36:	90 81       	ld	r25, Z
+     b38:	5d 9b       	sbis	0x0b, 5	; 11
+     b3a:	fe cf       	rjmp	.-4      	; 0xb38 <EF_void_UART_SendArray+0x8>
+     b3c:	9c b9       	out	0x0c, r25	; 12
+     b3e:	8f 5f       	subi	r24, 0xFF	; 255
+     b40:	31 96       	adiw	r30, 0x01	; 1
+     b42:	86 17       	cp	r24, r22
+     b44:	c0 f3       	brcs	.-16     	; 0xb36 <EF_void_UART_SendArray+0x6>
+     b46:	08 95       	ret
+
+00000b48 <EF_void_UART_SendString>:
+     b48:	20 e0       	ldi	r18, 0x00	; 0
+     b4a:	04 c0       	rjmp	.+8      	; 0xb54 <EF_void_UART_SendString+0xc>
+     b4c:	5d 9b       	sbis	0x0b, 5	; 11
+     b4e:	fe cf       	rjmp	.-4      	; 0xb4c <EF_void_UART_SendString+0x4>
+     b50:	ec b9       	out	0x0c, r30	; 12
+     b52:	2f 5f       	subi	r18, 0xFF	; 255
+     b54:	fc 01       	movw	r30, r24
+     b56:	e2 0f       	add	r30, r18
+     b58:	f1 1d       	adc	r31, r1
+     b5a:	e0 81       	ld	r30, Z
+     b5c:	ee 23       	and	r30, r30
+     b5e:	b1 f7       	brne	.-20     	; 0xb4c <EF_void_UART_SendString+0x4>
+     b60:	08 95       	ret
+
+00000b62 <EF_void_UART_SendNewLine>:
+     b62:	5d 9b       	sbis	0x0b, 5	; 11
+     b64:	fe cf       	rjmp	.-4      	; 0xb62 <EF_void_UART_SendNewLine>
+     b66:	8d e0       	ldi	r24, 0x0D	; 13
+     b68:	8c b9       	out	0x0c, r24	; 12
+     b6a:	5d 9b       	sbis	0x0b, 5	; 11
+     b6c:	fe cf       	rjmp	.-4      	; 0xb6a <EF_void_UART_SendNewLine+0x8>
+     b6e:	8a e0       	ldi	r24, 0x0A	; 10
+     b70:	8c b9       	out	0x0c, r24	; 12
+     b72:	08 95       	ret
+
+00000b74 <EF_void_UART_update_time>:
+     b74:	cf 92       	push	r12
+     b76:	df 92       	push	r13
+     b78:	ef 92       	push	r14
+     b7a:	ff 92       	push	r15
+     b7c:	0f 93       	push	r16
+     b7e:	1f 93       	push	r17
+     b80:	df 93       	push	r29
+     b82:	cf 93       	push	r28
+     b84:	00 d0       	rcall	.+0      	; 0xb86 <EF_void_UART_update_time+0x12>
+     b86:	cd b7       	in	r28, 0x3d	; 61
+     b88:	de b7       	in	r29, 0x3e	; 62
+     b8a:	f8 2e       	mov	r15, r24
+     b8c:	d6 2e       	mov	r13, r22
+     b8e:	c4 2e       	mov	r12, r20
+     b90:	6a e0       	ldi	r22, 0x0A	; 10
+     b92:	0e 94 35 0b 	call	0x166a	; 0x166a <__udivmodqi4>
+     b96:	90 e0       	ldi	r25, 0x00	; 0
+     b98:	8e 01       	movw	r16, r28
+     b9a:	0f 5f       	subi	r16, 0xFF	; 255
+     b9c:	1f 4f       	sbci	r17, 0xFF	; 255
+     b9e:	b8 01       	movw	r22, r16
+     ba0:	4a e0       	ldi	r20, 0x0A	; 10
+     ba2:	50 e0       	ldi	r21, 0x00	; 0
+     ba4:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     ba8:	c8 01       	movw	r24, r16
+     baa:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     bae:	8f 2d       	mov	r24, r15
+     bb0:	6a e0       	ldi	r22, 0x0A	; 10
+     bb2:	0e 94 35 0b 	call	0x166a	; 0x166a <__udivmodqi4>
+     bb6:	89 2f       	mov	r24, r25
+     bb8:	90 e0       	ldi	r25, 0x00	; 0
+     bba:	b8 01       	movw	r22, r16
+     bbc:	4a e0       	ldi	r20, 0x0A	; 10
+     bbe:	50 e0       	ldi	r21, 0x00	; 0
+     bc0:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     bc4:	c8 01       	movw	r24, r16
+     bc6:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     bca:	80 e6       	ldi	r24, 0x60	; 96
+     bcc:	e8 2e       	mov	r14, r24
+     bce:	80 e0       	ldi	r24, 0x00	; 0
+     bd0:	f8 2e       	mov	r15, r24
+     bd2:	c7 01       	movw	r24, r14
+     bd4:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     bd8:	8d 2d       	mov	r24, r13
+     bda:	6a e0       	ldi	r22, 0x0A	; 10
+     bdc:	0e 94 35 0b 	call	0x166a	; 0x166a <__udivmodqi4>
+     be0:	90 e0       	ldi	r25, 0x00	; 0
+     be2:	b8 01       	movw	r22, r16
+     be4:	4a e0       	ldi	r20, 0x0A	; 10
+     be6:	50 e0       	ldi	r21, 0x00	; 0
+     be8:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     bec:	c8 01       	movw	r24, r16
+     bee:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     bf2:	8d 2d       	mov	r24, r13
+     bf4:	6a e0       	ldi	r22, 0x0A	; 10
+     bf6:	0e 94 35 0b 	call	0x166a	; 0x166a <__udivmodqi4>
+     bfa:	89 2f       	mov	r24, r25
+     bfc:	90 e0       	ldi	r25, 0x00	; 0
+     bfe:	b8 01       	movw	r22, r16
+     c00:	4a e0       	ldi	r20, 0x0A	; 10
+     c02:	50 e0       	ldi	r21, 0x00	; 0
+     c04:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     c08:	c8 01       	movw	r24, r16
+     c0a:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     c0e:	c7 01       	movw	r24, r14
+     c10:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     c14:	8c 2d       	mov	r24, r12
+     c16:	6a e0       	ldi	r22, 0x0A	; 10
+     c18:	0e 94 35 0b 	call	0x166a	; 0x166a <__udivmodqi4>
+     c1c:	90 e0       	ldi	r25, 0x00	; 0
+     c1e:	b8 01       	movw	r22, r16
+     c20:	4a e0       	ldi	r20, 0x0A	; 10
+     c22:	50 e0       	ldi	r21, 0x00	; 0
+     c24:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     c28:	c8 01       	movw	r24, r16
+     c2a:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     c2e:	8c 2d       	mov	r24, r12
+     c30:	6a e0       	ldi	r22, 0x0A	; 10
+     c32:	0e 94 35 0b 	call	0x166a	; 0x166a <__udivmodqi4>
+     c36:	89 2f       	mov	r24, r25
+     c38:	90 e0       	ldi	r25, 0x00	; 0
+     c3a:	b8 01       	movw	r22, r16
+     c3c:	4a e0       	ldi	r20, 0x0A	; 10
+     c3e:	50 e0       	ldi	r21, 0x00	; 0
+     c40:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     c44:	c8 01       	movw	r24, r16
+     c46:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+     c4a:	0f 90       	pop	r0
+     c4c:	0f 90       	pop	r0
+     c4e:	cf 91       	pop	r28
+     c50:	df 91       	pop	r29
+     c52:	1f 91       	pop	r17
+     c54:	0f 91       	pop	r16
+     c56:	ff 90       	pop	r15
+     c58:	ef 90       	pop	r14
+     c5a:	df 90       	pop	r13
+     c5c:	cf 90       	pop	r12
+     c5e:	08 95       	ret
+
+00000c60 <EF_void_UART_Send_Integer>:
+     c60:	0f 93       	push	r16
+     c62:	1f 93       	push	r17
+     c64:	df 93       	push	r29
+     c66:	cf 93       	push	r28
+     c68:	00 d0       	rcall	.+0      	; 0xc6a <EF_void_UART_Send_Integer+0xa>
+     c6a:	00 d0       	rcall	.+0      	; 0xc6c <EF_void_UART_Send_Integer+0xc>
+     c6c:	00 d0       	rcall	.+0      	; 0xc6e <EF_void_UART_Send_Integer+0xe>
+     c6e:	cd b7       	in	r28, 0x3d	; 61
+     c70:	de b7       	in	r29, 0x3e	; 62
+     c72:	8e 01       	movw	r16, r28
+     c74:	0f 5f       	subi	r16, 0xFF	; 255
+     c76:	1f 4f       	sbci	r17, 0xFF	; 255
+     c78:	26 e0       	ldi	r18, 0x06	; 6
+     c7a:	f8 01       	movw	r30, r16
+     c7c:	11 92       	st	Z+, r1
+     c7e:	2a 95       	dec	r18
+     c80:	e9 f7       	brne	.-6      	; 0xc7c <EF_void_UART_Send_Integer+0x1c>
+     c82:	b8 01       	movw	r22, r16
+     c84:	4a e0       	ldi	r20, 0x0A	; 10
+     c86:	50 e0       	ldi	r21, 0x00	; 0
+     c88:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     c8c:	80 e0       	ldi	r24, 0x00	; 0
+     c8e:	98 01       	movw	r18, r16
+     c90:	04 c0       	rjmp	.+8      	; 0xc9a <EF_void_UART_Send_Integer+0x3a>
+     c92:	5d 9b       	sbis	0x0b, 5	; 11
+     c94:	fe cf       	rjmp	.-4      	; 0xc92 <EF_void_UART_Send_Integer+0x32>
+     c96:	ec b9       	out	0x0c, r30	; 12
+     c98:	8f 5f       	subi	r24, 0xFF	; 255
+     c9a:	f9 01       	movw	r30, r18
+     c9c:	e8 0f       	add	r30, r24
+     c9e:	f1 1d       	adc	r31, r1
+     ca0:	e0 81       	ld	r30, Z
+     ca2:	ee 23       	and	r30, r30
+     ca4:	b1 f7       	brne	.-20     	; 0xc92 <EF_void_UART_Send_Integer+0x32>
+     ca6:	26 96       	adiw	r28, 0x06	; 6
+     ca8:	0f b6       	in	r0, 0x3f	; 63
+     caa:	f8 94       	cli
+     cac:	de bf       	out	0x3e, r29	; 62
+     cae:	0f be       	out	0x3f, r0	; 63
+     cb0:	cd bf       	out	0x3d, r28	; 61
+     cb2:	cf 91       	pop	r28
+     cb4:	df 91       	pop	r29
+     cb6:	1f 91       	pop	r17
+     cb8:	0f 91       	pop	r16
+     cba:	08 95       	ret
+
+00000cbc <EF_void_UART_Send_data_PBM>:
+     cbc:	0f 93       	push	r16
+     cbe:	1f 93       	push	r17
+     cc0:	df 93       	push	r29
+     cc2:	cf 93       	push	r28
+     cc4:	00 d0       	rcall	.+0      	; 0xcc6 <EF_void_UART_Send_data_PBM+0xa>
+     cc6:	00 d0       	rcall	.+0      	; 0xcc8 <EF_void_UART_Send_data_PBM+0xc>
+     cc8:	00 d0       	rcall	.+0      	; 0xcca <EF_void_UART_Send_data_PBM+0xe>
+     cca:	cd b7       	in	r28, 0x3d	; 61
+     ccc:	de b7       	in	r29, 0x3e	; 62
+     cce:	8e 01       	movw	r16, r28
+     cd0:	0f 5f       	subi	r16, 0xFF	; 255
+     cd2:	1f 4f       	sbci	r17, 0xFF	; 255
+     cd4:	26 e0       	ldi	r18, 0x06	; 6
+     cd6:	f8 01       	movw	r30, r16
+     cd8:	11 92       	st	Z+, r1
+     cda:	2a 95       	dec	r18
+     cdc:	e9 f7       	brne	.-6      	; 0xcd8 <EF_void_UART_Send_data_PBM+0x1c>
+     cde:	b8 01       	movw	r22, r16
+     ce0:	4a e0       	ldi	r20, 0x0A	; 10
+     ce2:	50 e0       	ldi	r21, 0x00	; 0
+     ce4:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     ce8:	82 e6       	ldi	r24, 0x62	; 98
+     cea:	90 e0       	ldi	r25, 0x00	; 0
+     cec:	60 e1       	ldi	r22, 0x10	; 16
+     cee:	0e 94 98 05 	call	0xb30	; 0xb30 <EF_void_UART_SendArray>
+     cf2:	90 e0       	ldi	r25, 0x00	; 0
+     cf4:	98 01       	movw	r18, r16
+     cf6:	4a e1       	ldi	r20, 0x1A	; 26
+     cf8:	07 c0       	rjmp	.+14     	; 0xd08 <EF_void_UART_Send_data_PBM+0x4c>
+     cfa:	5d 9b       	sbis	0x0b, 5	; 11
+     cfc:	fe cf       	rjmp	.-4      	; 0xcfa <EF_void_UART_Send_data_PBM+0x3e>
+     cfe:	ec b9       	out	0x0c, r30	; 12
+     d00:	84 2f       	mov	r24, r20
+     d02:	8a 95       	dec	r24
+     d04:	f1 f7       	brne	.-4      	; 0xd02 <EF_void_UART_Send_data_PBM+0x46>
+     d06:	9f 5f       	subi	r25, 0xFF	; 255
+     d08:	f9 01       	movw	r30, r18
+     d0a:	e9 0f       	add	r30, r25
+     d0c:	f1 1d       	adc	r31, r1
+     d0e:	e0 81       	ld	r30, Z
+     d10:	ee 23       	and	r30, r30
+     d12:	99 f7       	brne	.-26     	; 0xcfa <EF_void_UART_Send_data_PBM+0x3e>
+     d14:	26 96       	adiw	r28, 0x06	; 6
+     d16:	0f b6       	in	r0, 0x3f	; 63
+     d18:	f8 94       	cli
+     d1a:	de bf       	out	0x3e, r29	; 62
+     d1c:	0f be       	out	0x3f, r0	; 63
+     d1e:	cd bf       	out	0x3d, r28	; 61
+     d20:	cf 91       	pop	r28
+     d22:	df 91       	pop	r29
+     d24:	1f 91       	pop	r17
+     d26:	0f 91       	pop	r16
+     d28:	08 95       	ret
+
+00000d2a <EF_void_UART_Send_data_temp>:
+     d2a:	0f 93       	push	r16
+     d2c:	1f 93       	push	r17
+     d2e:	df 93       	push	r29
+     d30:	cf 93       	push	r28
+     d32:	00 d0       	rcall	.+0      	; 0xd34 <EF_void_UART_Send_data_temp+0xa>
+     d34:	00 d0       	rcall	.+0      	; 0xd36 <EF_void_UART_Send_data_temp+0xc>
+     d36:	00 d0       	rcall	.+0      	; 0xd38 <EF_void_UART_Send_data_temp+0xe>
+     d38:	cd b7       	in	r28, 0x3d	; 61
+     d3a:	de b7       	in	r29, 0x3e	; 62
+     d3c:	8e 01       	movw	r16, r28
+     d3e:	0f 5f       	subi	r16, 0xFF	; 255
+     d40:	1f 4f       	sbci	r17, 0xFF	; 255
+     d42:	26 e0       	ldi	r18, 0x06	; 6
+     d44:	f8 01       	movw	r30, r16
+     d46:	11 92       	st	Z+, r1
+     d48:	2a 95       	dec	r18
+     d4a:	e9 f7       	brne	.-6      	; 0xd46 <EF_void_UART_Send_data_temp+0x1c>
+     d4c:	b8 01       	movw	r22, r16
+     d4e:	4a e0       	ldi	r20, 0x0A	; 10
+     d50:	50 e0       	ldi	r21, 0x00	; 0
+     d52:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+     d56:	83 e7       	ldi	r24, 0x73	; 115
+     d58:	90 e0       	ldi	r25, 0x00	; 0
+     d5a:	6f e0       	ldi	r22, 0x0F	; 15
+     d5c:	0e 94 98 05 	call	0xb30	; 0xb30 <EF_void_UART_SendArray>
+     d60:	20 e0       	ldi	r18, 0x00	; 0
+     d62:	b8 01       	movw	r22, r16
+     d64:	3e e2       	ldi	r19, 0x2E	; 46
+     d66:	40 ed       	ldi	r20, 0xD0	; 208
+     d68:	57 e0       	ldi	r21, 0x07	; 7
+     d6a:	0c c0       	rjmp	.+24     	; 0xd84 <EF_void_UART_Send_data_temp+0x5a>
+     d6c:	5d 9b       	sbis	0x0b, 5	; 11
+     d6e:	fe cf       	rjmp	.-4      	; 0xd6c <EF_void_UART_Send_data_temp+0x42>
+     d70:	ec b9       	out	0x0c, r30	; 12
+     d72:	21 30       	cpi	r18, 0x01	; 1
+     d74:	19 f4       	brne	.+6      	; 0xd7c <EF_void_UART_Send_data_temp+0x52>
+     d76:	5d 9b       	sbis	0x0b, 5	; 11
+     d78:	fe cf       	rjmp	.-4      	; 0xd76 <EF_void_UART_Send_data_temp+0x4c>
+     d7a:	3c b9       	out	0x0c, r19	; 12
+     d7c:	ca 01       	movw	r24, r20
+     d7e:	01 97       	sbiw	r24, 0x01	; 1
+     d80:	f1 f7       	brne	.-4      	; 0xd7e <EF_void_UART_Send_data_temp+0x54>
+     d82:	2f 5f       	subi	r18, 0xFF	; 255
+     d84:	fb 01       	movw	r30, r22
+     d86:	e2 0f       	add	r30, r18
+     d88:	f1 1d       	adc	r31, r1
+     d8a:	e0 81       	ld	r30, Z
+     d8c:	ee 23       	and	r30, r30
+     d8e:	71 f7       	brne	.-36     	; 0xd6c <EF_void_UART_Send_data_temp+0x42>
+     d90:	82 e8       	ldi	r24, 0x82	; 130
+     d92:	90 e0       	ldi	r25, 0x00	; 0
+     d94:	63 e0       	ldi	r22, 0x03	; 3
+     d96:	0e 94 98 05 	call	0xb30	; 0xb30 <EF_void_UART_SendArray>
+     d9a:	26 96       	adiw	r28, 0x06	; 6
+     d9c:	0f b6       	in	r0, 0x3f	; 63
+     d9e:	f8 94       	cli
+     da0:	de bf       	out	0x3e, r29	; 62
+     da2:	0f be       	out	0x3f, r0	; 63
+     da4:	cd bf       	out	0x3d, r28	; 61
+     da6:	cf 91       	pop	r28
+     da8:	df 91       	pop	r29
+     daa:	1f 91       	pop	r17
+     dac:	0f 91       	pop	r16
+     dae:	08 95       	ret
+
+00000db0 <EF_BOOLEAN_UART_PutChar>:
+     db0:	1f 93       	push	r17
+     db2:	18 2f       	mov	r17, r24
+     db4:	86 e0       	ldi	r24, 0x06	; 6
+     db6:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     dba:	5d 99       	sbic	0x0b, 5	; 11
+     dbc:	05 c0       	rjmp	.+10     	; 0xdc8 <EF_BOOLEAN_UART_PutChar+0x18>
+     dbe:	86 e0       	ldi	r24, 0x06	; 6
+     dc0:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     dc4:	88 23       	and	r24, r24
+     dc6:	c9 f3       	breq	.-14     	; 0xdba <EF_BOOLEAN_UART_PutChar+0xa>
+     dc8:	86 e0       	ldi	r24, 0x06	; 6
+     dca:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     dce:	86 e0       	ldi	r24, 0x06	; 6
+     dd0:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     dd4:	5d 99       	sbic	0x0b, 5	; 11
+     dd6:	02 c0       	rjmp	.+4      	; 0xddc <EF_BOOLEAN_UART_PutChar+0x2c>
+     dd8:	80 e0       	ldi	r24, 0x00	; 0
+     dda:	02 c0       	rjmp	.+4      	; 0xde0 <EF_BOOLEAN_UART_PutChar+0x30>
+     ddc:	1c b9       	out	0x0c, r17	; 12
+     dde:	81 e0       	ldi	r24, 0x01	; 1
+     de0:	1f 91       	pop	r17
+     de2:	08 95       	ret
+
+00000de4 <EF_BOOLEAN_UART_GetChar>:
+     de4:	cf 93       	push	r28
+     de6:	df 93       	push	r29
+     de8:	ec 01       	movw	r28, r24
+     dea:	86 e0       	ldi	r24, 0x06	; 6
+     dec:	0e 94 01 05 	call	0xa02	; 0xa02 <EF_void_TimerStart>
+     df0:	5f 99       	sbic	0x0b, 7	; 11
+     df2:	05 c0       	rjmp	.+10     	; 0xdfe <EF_BOOLEAN_UART_GetChar+0x1a>
+     df4:	86 e0       	ldi	r24, 0x06	; 6
+     df6:	0e 94 f1 04 	call	0x9e2	; 0x9e2 <EF_BOOLEAN_TimerCheck>
+     dfa:	88 23       	and	r24, r24
+     dfc:	c9 f3       	breq	.-14     	; 0xdf0 <EF_BOOLEAN_UART_GetChar+0xc>
+     dfe:	86 e0       	ldi	r24, 0x06	; 6
+     e00:	0e 94 12 05 	call	0xa24	; 0xa24 <EF_void_TimerStop>
+     e04:	86 e0       	ldi	r24, 0x06	; 6
+     e06:	0e 94 1e 05 	call	0xa3c	; 0xa3c <EF_void_TimerReset>
+     e0a:	8b b1       	in	r24, 0x0b	; 11
+     e0c:	9c b1       	in	r25, 0x0c	; 12
+     e0e:	98 83       	st	Y, r25
+     e10:	88 1f       	adc	r24, r24
+     e12:	88 27       	eor	r24, r24
+     e14:	88 1f       	adc	r24, r24
+     e16:	df 91       	pop	r29
+     e18:	cf 91       	pop	r28
+     e1a:	08 95       	ret
+
+00000e1c <EF_void_UART_Init>:
+     e1c:	fc 01       	movw	r30, r24
+     e1e:	1a b8       	out	0x0a, r1	; 10
+     e20:	10 bc       	out	0x20, r1	; 32
+     e22:	87 81       	ldd	r24, Z+7	; 0x07
+     e24:	81 11       	cpse	r24, r1
+     e26:	57 9a       	sbi	0x0a, 7	; 10
+     e28:	80 85       	ldd	r24, Z+8	; 0x08
+     e2a:	81 11       	cpse	r24, r1
+     e2c:	56 9a       	sbi	0x0a, 6	; 10
+     e2e:	81 85       	ldd	r24, Z+9	; 0x09
+     e30:	81 11       	cpse	r24, r1
+     e32:	54 9a       	sbi	0x0a, 4	; 10
+     e34:	82 85       	ldd	r24, Z+10	; 0x0a
+     e36:	81 11       	cpse	r24, r1
+     e38:	53 9a       	sbi	0x0a, 3	; 10
+     e3a:	90 b5       	in	r25, 0x20	; 32
+     e3c:	86 81       	ldd	r24, Z+6	; 0x06
+     e3e:	82 95       	swap	r24
+     e40:	80 7f       	andi	r24, 0xF0	; 240
+     e42:	89 2b       	or	r24, r25
+     e44:	80 bd       	out	0x20, r24	; 32
+     e46:	90 b5       	in	r25, 0x20	; 32
+     e48:	85 81       	ldd	r24, Z+5	; 0x05
+     e4a:	88 0f       	add	r24, r24
+     e4c:	88 0f       	add	r24, r24
+     e4e:	88 0f       	add	r24, r24
+     e50:	89 2b       	or	r24, r25
+     e52:	80 bd       	out	0x20, r24	; 32
+     e54:	84 81       	ldd	r24, Z+4	; 0x04
+     e56:	89 30       	cpi	r24, 0x09	; 9
+     e58:	11 f4       	brne	.+4      	; 0xe5e <EF_void_UART_Init+0x42>
+     e5a:	52 9a       	sbi	0x0a, 2	; 10
+     e5c:	0c c0       	rjmp	.+24     	; 0xe76 <EF_void_UART_Init+0x5a>
+     e5e:	85 30       	cpi	r24, 0x05	; 5
+     e60:	69 f0       	breq	.+26     	; 0xe7c <EF_void_UART_Init+0x60>
+     e62:	86 30       	cpi	r24, 0x06	; 6
+     e64:	19 f4       	brne	.+6      	; 0xe6c <EF_void_UART_Init+0x50>
+     e66:	80 b5       	in	r24, 0x20	; 32
+     e68:	82 68       	ori	r24, 0x82	; 130
+     e6a:	07 c0       	rjmp	.+14     	; 0xe7a <EF_void_UART_Init+0x5e>
+     e6c:	87 30       	cpi	r24, 0x07	; 7
+     e6e:	19 f4       	brne	.+6      	; 0xe76 <EF_void_UART_Init+0x5a>
+     e70:	80 b5       	in	r24, 0x20	; 32
+     e72:	84 68       	ori	r24, 0x84	; 132
+     e74:	02 c0       	rjmp	.+4      	; 0xe7a <EF_void_UART_Init+0x5e>
+     e76:	80 b5       	in	r24, 0x20	; 32
+     e78:	86 68       	ori	r24, 0x86	; 134
+     e7a:	80 bd       	out	0x20, r24	; 32
+     e7c:	20 81       	ld	r18, Z
+     e7e:	31 81       	ldd	r19, Z+1	; 0x01
+     e80:	42 81       	ldd	r20, Z+2	; 0x02
+     e82:	53 81       	ldd	r21, Z+3	; 0x03
+     e84:	64 e0       	ldi	r22, 0x04	; 4
+     e86:	22 0f       	add	r18, r18
+     e88:	33 1f       	adc	r19, r19
+     e8a:	44 1f       	adc	r20, r20
+     e8c:	55 1f       	adc	r21, r21
+     e8e:	6a 95       	dec	r22
+     e90:	d1 f7       	brne	.-12     	; 0xe86 <EF_void_UART_Init+0x6a>
+     e92:	60 e0       	ldi	r22, 0x00	; 0
+     e94:	72 e1       	ldi	r23, 0x12	; 18
+     e96:	8a e7       	ldi	r24, 0x7A	; 122
+     e98:	90 e0       	ldi	r25, 0x00	; 0
+     e9a:	0e 94 68 0b 	call	0x16d0	; 0x16d0 <__udivmodsi4>
+     e9e:	21 50       	subi	r18, 0x01	; 1
+     ea0:	30 40       	sbci	r19, 0x00	; 0
+     ea2:	40 40       	sbci	r20, 0x00	; 0
+     ea4:	50 40       	sbci	r21, 0x00	; 0
+     ea6:	bb 27       	eor	r27, r27
+     ea8:	a5 2f       	mov	r26, r21
+     eaa:	94 2f       	mov	r25, r20
+     eac:	83 2f       	mov	r24, r19
+     eae:	80 bd       	out	0x20, r24	; 32
+     eb0:	29 b9       	out	0x09, r18	; 9
+     eb2:	86 e0       	ldi	r24, 0x06	; 6
+     eb4:	65 e0       	ldi	r22, 0x05	; 5
+     eb6:	70 e0       	ldi	r23, 0x00	; 0
+     eb8:	0e 94 a2 04 	call	0x944	; 0x944 <EF_void_TimerCreate>
+     ebc:	08 95       	ret
+
+00000ebe <EF_7SegmentWriteData>:
+     ebe:	98 b3       	in	r25, 0x18	; 24
+     ec0:	90 7f       	andi	r25, 0xF0	; 240
+     ec2:	98 2b       	or	r25, r24
+     ec4:	98 bb       	out	0x18, r25	; 24
+     ec6:	08 95       	ret
+
+00000ec8 <EF_void_Segment_Display>:
+     ec8:	ef 92       	push	r14
+     eca:	ff 92       	push	r15
+     ecc:	0f 93       	push	r16
+     ece:	1f 93       	push	r17
+     ed0:	cf 93       	push	r28
+     ed2:	df 93       	push	r29
+     ed4:	ec 01       	movw	r28, r24
+     ed6:	68 ee       	ldi	r22, 0xE8	; 232
+     ed8:	73 e0       	ldi	r23, 0x03	; 3
+     eda:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+     ede:	18 2f       	mov	r17, r24
+     ee0:	09 2f       	mov	r16, r25
+     ee2:	64 e6       	ldi	r22, 0x64	; 100
+     ee4:	70 e0       	ldi	r23, 0x00	; 0
+     ee6:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+     eea:	f8 2e       	mov	r15, r24
+     eec:	e9 2e       	mov	r14, r25
+     eee:	83 e0       	ldi	r24, 0x03	; 3
+     ef0:	c8 3e       	cpi	r28, 0xE8	; 232
+     ef2:	d8 07       	cpc	r29, r24
+     ef4:	f0 f0       	brcs	.+60     	; 0xf32 <EF_void_Segment_Display+0x6a>
+     ef6:	82 e4       	ldi	r24, 0x42	; 66
+     ef8:	62 e0       	ldi	r22, 0x02	; 2
+     efa:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+     efe:	83 e4       	ldi	r24, 0x43	; 67
+     f00:	63 e0       	ldi	r22, 0x03	; 3
+     f02:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f06:	81 e4       	ldi	r24, 0x41	; 65
+     f08:	65 e0       	ldi	r22, 0x05	; 5
+     f0a:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f0e:	81 e4       	ldi	r24, 0x41	; 65
+     f10:	64 e0       	ldi	r22, 0x04	; 4
+     f12:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f16:	28 b3       	in	r18, 0x18	; 24
+     f18:	ce 01       	movw	r24, r28
+     f1a:	68 ee       	ldi	r22, 0xE8	; 232
+     f1c:	73 e0       	ldi	r23, 0x03	; 3
+     f1e:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+     f22:	20 7f       	andi	r18, 0xF0	; 240
+     f24:	26 2b       	or	r18, r22
+     f26:	28 bb       	out	0x18, r18	; 24
+     f28:	80 e1       	ldi	r24, 0x10	; 16
+     f2a:	97 e2       	ldi	r25, 0x27	; 39
+     f2c:	01 97       	sbiw	r24, 0x01	; 1
+     f2e:	f1 f7       	brne	.-4      	; 0xf2c <EF_void_Segment_Display+0x64>
+     f30:	03 c0       	rjmp	.+6      	; 0xf38 <EF_void_Segment_Display+0x70>
+     f32:	c4 36       	cpi	r28, 0x64	; 100
+     f34:	d1 05       	cpc	r29, r1
+     f36:	f0 f0       	brcs	.+60     	; 0xf74 <EF_void_Segment_Display+0xac>
+     f38:	83 e4       	ldi	r24, 0x43	; 67
+     f3a:	63 e0       	ldi	r22, 0x03	; 3
+     f3c:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+     f40:	82 e4       	ldi	r24, 0x42	; 66
+     f42:	62 e0       	ldi	r22, 0x02	; 2
+     f44:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f48:	81 e4       	ldi	r24, 0x41	; 65
+     f4a:	65 e0       	ldi	r22, 0x05	; 5
+     f4c:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f50:	81 e4       	ldi	r24, 0x41	; 65
+     f52:	64 e0       	ldi	r22, 0x04	; 4
+     f54:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f58:	28 b3       	in	r18, 0x18	; 24
+     f5a:	81 2f       	mov	r24, r17
+     f5c:	90 2f       	mov	r25, r16
+     f5e:	64 e6       	ldi	r22, 0x64	; 100
+     f60:	70 e0       	ldi	r23, 0x00	; 0
+     f62:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+     f66:	20 7f       	andi	r18, 0xF0	; 240
+     f68:	26 2b       	or	r18, r22
+     f6a:	28 bb       	out	0x18, r18	; 24
+     f6c:	80 e1       	ldi	r24, 0x10	; 16
+     f6e:	97 e2       	ldi	r25, 0x27	; 39
+     f70:	01 97       	sbiw	r24, 0x01	; 1
+     f72:	f1 f7       	brne	.-4      	; 0xf70 <EF_void_Segment_Display+0xa8>
+     f74:	2a 97       	sbiw	r28, 0x0a	; 10
+     f76:	f0 f0       	brcs	.+60     	; 0xfb4 <EF_void_Segment_Display+0xec>
+     f78:	81 e4       	ldi	r24, 0x41	; 65
+     f7a:	64 e0       	ldi	r22, 0x04	; 4
+     f7c:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+     f80:	81 e4       	ldi	r24, 0x41	; 65
+     f82:	65 e0       	ldi	r22, 0x05	; 5
+     f84:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f88:	82 e4       	ldi	r24, 0x42	; 66
+     f8a:	62 e0       	ldi	r22, 0x02	; 2
+     f8c:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f90:	83 e4       	ldi	r24, 0x43	; 67
+     f92:	63 e0       	ldi	r22, 0x03	; 3
+     f94:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     f98:	28 b3       	in	r18, 0x18	; 24
+     f9a:	8f 2d       	mov	r24, r15
+     f9c:	9e 2d       	mov	r25, r14
+     f9e:	6a e0       	ldi	r22, 0x0A	; 10
+     fa0:	70 e0       	ldi	r23, 0x00	; 0
+     fa2:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+     fa6:	20 7f       	andi	r18, 0xF0	; 240
+     fa8:	26 2b       	or	r18, r22
+     faa:	28 bb       	out	0x18, r18	; 24
+     fac:	80 e1       	ldi	r24, 0x10	; 16
+     fae:	97 e2       	ldi	r25, 0x27	; 39
+     fb0:	01 97       	sbiw	r24, 0x01	; 1
+     fb2:	f1 f7       	brne	.-4      	; 0xfb0 <EF_void_Segment_Display+0xe8>
+     fb4:	81 e4       	ldi	r24, 0x41	; 65
+     fb6:	65 e0       	ldi	r22, 0x05	; 5
+     fb8:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+     fbc:	81 e4       	ldi	r24, 0x41	; 65
+     fbe:	64 e0       	ldi	r22, 0x04	; 4
+     fc0:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     fc4:	83 e4       	ldi	r24, 0x43	; 67
+     fc6:	63 e0       	ldi	r22, 0x03	; 3
+     fc8:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     fcc:	82 e4       	ldi	r24, 0x42	; 66
+     fce:	62 e0       	ldi	r22, 0x02	; 2
+     fd0:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+     fd4:	28 b3       	in	r18, 0x18	; 24
+     fd6:	8f 2d       	mov	r24, r15
+     fd8:	9e 2d       	mov	r25, r14
+     fda:	6a e0       	ldi	r22, 0x0A	; 10
+     fdc:	70 e0       	ldi	r23, 0x00	; 0
+     fde:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+     fe2:	20 7f       	andi	r18, 0xF0	; 240
+     fe4:	28 2b       	or	r18, r24
+     fe6:	28 bb       	out	0x18, r18	; 24
+     fe8:	80 e1       	ldi	r24, 0x10	; 16
+     fea:	97 e2       	ldi	r25, 0x27	; 39
+     fec:	01 97       	sbiw	r24, 0x01	; 1
+     fee:	f1 f7       	brne	.-4      	; 0xfec <EF_void_Segment_Display+0x124>
+     ff0:	df 91       	pop	r29
+     ff2:	cf 91       	pop	r28
+     ff4:	1f 91       	pop	r17
+     ff6:	0f 91       	pop	r16
+     ff8:	ff 90       	pop	r15
+     ffa:	ef 90       	pop	r14
+     ffc:	08 95       	ret
+
+00000ffe <EF_void_Segment_Init>:
+     ffe:	82 e4       	ldi	r24, 0x42	; 66
+    1000:	60 e0       	ldi	r22, 0x00	; 0
+    1002:	41 e0       	ldi	r20, 0x01	; 1
+    1004:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1008:	82 e4       	ldi	r24, 0x42	; 66
+    100a:	61 e0       	ldi	r22, 0x01	; 1
+    100c:	41 e0       	ldi	r20, 0x01	; 1
+    100e:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1012:	82 e4       	ldi	r24, 0x42	; 66
+    1014:	62 e0       	ldi	r22, 0x02	; 2
+    1016:	41 e0       	ldi	r20, 0x01	; 1
+    1018:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    101c:	82 e4       	ldi	r24, 0x42	; 66
+    101e:	63 e0       	ldi	r22, 0x03	; 3
+    1020:	41 e0       	ldi	r20, 0x01	; 1
+    1022:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1026:	83 e4       	ldi	r24, 0x43	; 67
+    1028:	65 e0       	ldi	r22, 0x05	; 5
+    102a:	41 e0       	ldi	r20, 0x01	; 1
+    102c:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1030:	83 e4       	ldi	r24, 0x43	; 67
+    1032:	64 e0       	ldi	r22, 0x04	; 4
+    1034:	41 e0       	ldi	r20, 0x01	; 1
+    1036:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    103a:	83 e4       	ldi	r24, 0x43	; 67
+    103c:	62 e0       	ldi	r22, 0x02	; 2
+    103e:	41 e0       	ldi	r20, 0x01	; 1
+    1040:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1044:	83 e4       	ldi	r24, 0x43	; 67
+    1046:	63 e0       	ldi	r22, 0x03	; 3
+    1048:	41 e0       	ldi	r20, 0x01	; 1
+    104a:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    104e:	08 95       	ret
+
+00001050 <EF_void_EEPROM24C16_Read_Byte>:
+    1050:	0f 93       	push	r16
+    1052:	1f 93       	push	r17
+    1054:	08 2f       	mov	r16, r24
+    1056:	16 2f       	mov	r17, r22
+    1058:	0e 94 30 03 	call	0x660	; 0x660 <EF_void_I2C_Start>
+    105c:	81 2f       	mov	r24, r17
+    105e:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1062:	80 2f       	mov	r24, r16
+    1064:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1068:	0e 94 30 03 	call	0x660	; 0x660 <EF_void_I2C_Start>
+    106c:	81 2f       	mov	r24, r17
+    106e:	81 60       	ori	r24, 0x01	; 1
+    1070:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1074:	80 e0       	ldi	r24, 0x00	; 0
+    1076:	0e 94 3f 03 	call	0x67e	; 0x67e <EF_U8_I2C_Read_Byte>
+    107a:	18 2f       	mov	r17, r24
+    107c:	0e 94 36 03 	call	0x66c	; 0x66c <EF_void_I2C_Stop>
+    1080:	81 2f       	mov	r24, r17
+    1082:	1f 91       	pop	r17
+    1084:	0f 91       	pop	r16
+    1086:	08 95       	ret
+
+00001088 <EF_void_EEPROM24C16_Write_Byte>:
+    1088:	ff 92       	push	r15
+    108a:	0f 93       	push	r16
+    108c:	1f 93       	push	r17
+    108e:	18 2f       	mov	r17, r24
+    1090:	06 2f       	mov	r16, r22
+    1092:	f4 2e       	mov	r15, r20
+    1094:	0e 94 30 03 	call	0x660	; 0x660 <EF_void_I2C_Start>
+    1098:	80 2f       	mov	r24, r16
+    109a:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    109e:	81 2f       	mov	r24, r17
+    10a0:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    10a4:	8f 2d       	mov	r24, r15
+    10a6:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    10aa:	0e 94 36 03 	call	0x66c	; 0x66c <EF_void_I2C_Stop>
+    10ae:	80 e3       	ldi	r24, 0x30	; 48
+    10b0:	95 e7       	ldi	r25, 0x75	; 117
+    10b2:	01 97       	sbiw	r24, 0x01	; 1
+    10b4:	f1 f7       	brne	.-4      	; 0x10b2 <EF_void_EEPROM24C16_Write_Byte+0x2a>
+    10b6:	1f 91       	pop	r17
+    10b8:	0f 91       	pop	r16
+    10ba:	ff 90       	pop	r15
+    10bc:	08 95       	ret
+
+000010be <EF_void_EEPROM24C16_Init>:
+    10be:	0e 94 39 03 	call	0x672	; 0x672 <EF_void_I2C_Init>
+    10c2:	08 95       	ret
+
+000010c4 <EF_u8_EEPROM24C64_Read_Byte>:
+    10c4:	df 92       	push	r13
+    10c6:	ef 92       	push	r14
+    10c8:	ff 92       	push	r15
+    10ca:	0f 93       	push	r16
+    10cc:	1f 93       	push	r17
+    10ce:	df 93       	push	r29
+    10d0:	cf 93       	push	r28
+    10d2:	0f 92       	push	r0
+    10d4:	cd b7       	in	r28, 0x3d	; 61
+    10d6:	de b7       	in	r29, 0x3e	; 62
+    10d8:	d8 2e       	mov	r13, r24
+    10da:	8b 01       	movw	r16, r22
+    10dc:	7a 01       	movw	r14, r20
+    10de:	81 e0       	ldi	r24, 0x01	; 1
+    10e0:	89 83       	std	Y+1, r24	; 0x01
+    10e2:	80 e2       	ldi	r24, 0x20	; 32
+    10e4:	60 30       	cpi	r22, 0x00	; 0
+    10e6:	78 07       	cpc	r23, r24
+    10e8:	08 f0       	brcs	.+2      	; 0x10ec <EF_u8_EEPROM24C64_Read_Byte+0x28>
+    10ea:	19 82       	std	Y+1, r1	; 0x01
+    10ec:	0e 94 30 03 	call	0x660	; 0x660 <EF_void_I2C_Start>
+    10f0:	8d 2d       	mov	r24, r13
+    10f2:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    10f6:	81 2f       	mov	r24, r17
+    10f8:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    10fc:	80 2f       	mov	r24, r16
+    10fe:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1102:	0e 94 30 03 	call	0x660	; 0x660 <EF_void_I2C_Start>
+    1106:	8d 2d       	mov	r24, r13
+    1108:	81 60       	ori	r24, 0x01	; 1
+    110a:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    110e:	80 e0       	ldi	r24, 0x00	; 0
+    1110:	0e 94 3f 03 	call	0x67e	; 0x67e <EF_U8_I2C_Read_Byte>
+    1114:	f7 01       	movw	r30, r14
+    1116:	80 83       	st	Z, r24
+    1118:	0e 94 36 03 	call	0x66c	; 0x66c <EF_void_I2C_Stop>
+    111c:	89 81       	ldd	r24, Y+1	; 0x01
+    111e:	0f 90       	pop	r0
+    1120:	cf 91       	pop	r28
+    1122:	df 91       	pop	r29
+    1124:	1f 91       	pop	r17
+    1126:	0f 91       	pop	r16
+    1128:	ff 90       	pop	r15
+    112a:	ef 90       	pop	r14
+    112c:	df 90       	pop	r13
+    112e:	08 95       	ret
+
+00001130 <EF_u8_EEPROM24C64_Write_Byte>:
+    1130:	ef 92       	push	r14
+    1132:	ff 92       	push	r15
+    1134:	0f 93       	push	r16
+    1136:	1f 93       	push	r17
+    1138:	df 93       	push	r29
+    113a:	cf 93       	push	r28
+    113c:	0f 92       	push	r0
+    113e:	cd b7       	in	r28, 0x3d	; 61
+    1140:	de b7       	in	r29, 0x3e	; 62
+    1142:	f8 2e       	mov	r15, r24
+    1144:	8b 01       	movw	r16, r22
+    1146:	e4 2e       	mov	r14, r20
+    1148:	81 e0       	ldi	r24, 0x01	; 1
+    114a:	89 83       	std	Y+1, r24	; 0x01
+    114c:	80 e2       	ldi	r24, 0x20	; 32
+    114e:	60 30       	cpi	r22, 0x00	; 0
+    1150:	78 07       	cpc	r23, r24
+    1152:	08 f0       	brcs	.+2      	; 0x1156 <EF_u8_EEPROM24C64_Write_Byte+0x26>
+    1154:	19 82       	std	Y+1, r1	; 0x01
+    1156:	0e 94 30 03 	call	0x660	; 0x660 <EF_void_I2C_Start>
+    115a:	8f 2d       	mov	r24, r15
+    115c:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1160:	81 2f       	mov	r24, r17
+    1162:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1166:	80 2f       	mov	r24, r16
+    1168:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    116c:	8e 2d       	mov	r24, r14
+    116e:	0e 94 29 03 	call	0x652	; 0x652 <EF_void_I2C_Write>
+    1172:	0e 94 36 03 	call	0x66c	; 0x66c <EF_void_I2C_Stop>
+    1176:	80 e4       	ldi	r24, 0x40	; 64
+    1178:	9c e9       	ldi	r25, 0x9C	; 156
+    117a:	01 97       	sbiw	r24, 0x01	; 1
+    117c:	f1 f7       	brne	.-4      	; 0x117a <EF_u8_EEPROM24C64_Write_Byte+0x4a>
+    117e:	89 81       	ldd	r24, Y+1	; 0x01
+    1180:	0f 90       	pop	r0
+    1182:	cf 91       	pop	r28
+    1184:	df 91       	pop	r29
+    1186:	1f 91       	pop	r17
+    1188:	0f 91       	pop	r16
+    118a:	ff 90       	pop	r15
+    118c:	ef 90       	pop	r14
+    118e:	08 95       	ret
+
+00001190 <EF_void_EEPROM24C64_Init>:
+    1190:	0e 94 39 03 	call	0x672	; 0x672 <EF_void_I2C_Init>
+    1194:	08 95       	ret
+
+00001196 <EF_u8_KeyPad_Scan>:
+    1196:	1f 93       	push	r17
+    1198:	16 b8       	out	0x06, r1	; 6
+    119a:	81 e4       	ldi	r24, 0x41	; 65
+    119c:	65 e0       	ldi	r22, 0x05	; 5
+    119e:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+    11a2:	81 e4       	ldi	r24, 0x41	; 65
+    11a4:	64 e0       	ldi	r22, 0x04	; 4
+    11a6:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    11aa:	81 e4       	ldi	r24, 0x41	; 65
+    11ac:	63 e0       	ldi	r22, 0x03	; 3
+    11ae:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    11b2:	81 e4       	ldi	r24, 0x41	; 65
+    11b4:	60 e0       	ldi	r22, 0x00	; 0
+    11b6:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    11ba:	88 23       	and	r24, r24
+    11bc:	11 f4       	brne	.+4      	; 0x11c2 <EF_u8_KeyPad_Scan+0x2c>
+    11be:	11 e0       	ldi	r17, 0x01	; 1
+    11c0:	11 c0       	rjmp	.+34     	; 0x11e4 <EF_u8_KeyPad_Scan+0x4e>
+    11c2:	81 e4       	ldi	r24, 0x41	; 65
+    11c4:	61 e0       	ldi	r22, 0x01	; 1
+    11c6:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    11ca:	88 23       	and	r24, r24
+    11cc:	11 f4       	brne	.+4      	; 0x11d2 <EF_u8_KeyPad_Scan+0x3c>
+    11ce:	14 e0       	ldi	r17, 0x04	; 4
+    11d0:	09 c0       	rjmp	.+18     	; 0x11e4 <EF_u8_KeyPad_Scan+0x4e>
+    11d2:	81 e4       	ldi	r24, 0x41	; 65
+    11d4:	62 e0       	ldi	r22, 0x02	; 2
+    11d6:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    11da:	88 23       	and	r24, r24
+    11dc:	11 f4       	brne	.+4      	; 0x11e2 <EF_u8_KeyPad_Scan+0x4c>
+    11de:	17 e0       	ldi	r17, 0x07	; 7
+    11e0:	01 c0       	rjmp	.+2      	; 0x11e4 <EF_u8_KeyPad_Scan+0x4e>
+    11e2:	10 e0       	ldi	r17, 0x00	; 0
+    11e4:	81 e4       	ldi	r24, 0x41	; 65
+    11e6:	64 e0       	ldi	r22, 0x04	; 4
+    11e8:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+    11ec:	81 e4       	ldi	r24, 0x41	; 65
+    11ee:	65 e0       	ldi	r22, 0x05	; 5
+    11f0:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    11f4:	81 e4       	ldi	r24, 0x41	; 65
+    11f6:	63 e0       	ldi	r22, 0x03	; 3
+    11f8:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    11fc:	81 e4       	ldi	r24, 0x41	; 65
+    11fe:	60 e0       	ldi	r22, 0x00	; 0
+    1200:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    1204:	88 23       	and	r24, r24
+    1206:	11 f4       	brne	.+4      	; 0x120c <EF_u8_KeyPad_Scan+0x76>
+    1208:	12 e0       	ldi	r17, 0x02	; 2
+    120a:	0f c0       	rjmp	.+30     	; 0x122a <EF_u8_KeyPad_Scan+0x94>
+    120c:	81 e4       	ldi	r24, 0x41	; 65
+    120e:	61 e0       	ldi	r22, 0x01	; 1
+    1210:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    1214:	88 23       	and	r24, r24
+    1216:	11 f4       	brne	.+4      	; 0x121c <EF_u8_KeyPad_Scan+0x86>
+    1218:	15 e0       	ldi	r17, 0x05	; 5
+    121a:	07 c0       	rjmp	.+14     	; 0x122a <EF_u8_KeyPad_Scan+0x94>
+    121c:	81 e4       	ldi	r24, 0x41	; 65
+    121e:	62 e0       	ldi	r22, 0x02	; 2
+    1220:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    1224:	88 23       	and	r24, r24
+    1226:	09 f4       	brne	.+2      	; 0x122a <EF_u8_KeyPad_Scan+0x94>
+    1228:	18 e0       	ldi	r17, 0x08	; 8
+    122a:	81 e4       	ldi	r24, 0x41	; 65
+    122c:	63 e0       	ldi	r22, 0x03	; 3
+    122e:	0e 94 b5 01 	call	0x36a	; 0x36a <EF_S8_DIO_ClearPin>
+    1232:	81 e4       	ldi	r24, 0x41	; 65
+    1234:	65 e0       	ldi	r22, 0x05	; 5
+    1236:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    123a:	81 e4       	ldi	r24, 0x41	; 65
+    123c:	64 e0       	ldi	r22, 0x04	; 4
+    123e:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    1242:	81 e4       	ldi	r24, 0x41	; 65
+    1244:	60 e0       	ldi	r22, 0x00	; 0
+    1246:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    124a:	88 23       	and	r24, r24
+    124c:	11 f4       	brne	.+4      	; 0x1252 <EF_u8_KeyPad_Scan+0xbc>
+    124e:	13 e0       	ldi	r17, 0x03	; 3
+    1250:	0f c0       	rjmp	.+30     	; 0x1270 <EF_u8_KeyPad_Scan+0xda>
+    1252:	81 e4       	ldi	r24, 0x41	; 65
+    1254:	61 e0       	ldi	r22, 0x01	; 1
+    1256:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    125a:	88 23       	and	r24, r24
+    125c:	11 f4       	brne	.+4      	; 0x1262 <EF_u8_KeyPad_Scan+0xcc>
+    125e:	16 e0       	ldi	r17, 0x06	; 6
+    1260:	07 c0       	rjmp	.+14     	; 0x1270 <EF_u8_KeyPad_Scan+0xda>
+    1262:	81 e4       	ldi	r24, 0x41	; 65
+    1264:	62 e0       	ldi	r22, 0x02	; 2
+    1266:	0e 94 94 02 	call	0x528	; 0x528 <EF_S8_DIO_CheckPin>
+    126a:	88 23       	and	r24, r24
+    126c:	09 f4       	brne	.+2      	; 0x1270 <EF_u8_KeyPad_Scan+0xda>
+    126e:	19 e0       	ldi	r17, 0x09	; 9
+    1270:	81 2f       	mov	r24, r17
+    1272:	1f 91       	pop	r17
+    1274:	08 95       	ret
+
+00001276 <EF_void_KeyPad_Init>:
+    1276:	81 e4       	ldi	r24, 0x41	; 65
+    1278:	60 e0       	ldi	r22, 0x00	; 0
+    127a:	40 e0       	ldi	r20, 0x00	; 0
+    127c:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1280:	81 e4       	ldi	r24, 0x41	; 65
+    1282:	61 e0       	ldi	r22, 0x01	; 1
+    1284:	40 e0       	ldi	r20, 0x00	; 0
+    1286:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    128a:	81 e4       	ldi	r24, 0x41	; 65
+    128c:	62 e0       	ldi	r22, 0x02	; 2
+    128e:	40 e0       	ldi	r20, 0x00	; 0
+    1290:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    1294:	81 e4       	ldi	r24, 0x41	; 65
+    1296:	65 e0       	ldi	r22, 0x05	; 5
+    1298:	41 e0       	ldi	r20, 0x01	; 1
+    129a:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    129e:	81 e4       	ldi	r24, 0x41	; 65
+    12a0:	64 e0       	ldi	r22, 0x04	; 4
+    12a2:	41 e0       	ldi	r20, 0x01	; 1
+    12a4:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    12a8:	81 e4       	ldi	r24, 0x41	; 65
+    12aa:	63 e0       	ldi	r22, 0x03	; 3
+    12ac:	41 e0       	ldi	r20, 0x01	; 1
+    12ae:	0e 94 db 00 	call	0x1b6	; 0x1b6 <EF_B_DIO_InitPin>
+    12b2:	81 e4       	ldi	r24, 0x41	; 65
+    12b4:	60 e0       	ldi	r22, 0x00	; 0
+    12b6:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    12ba:	81 e4       	ldi	r24, 0x41	; 65
+    12bc:	61 e0       	ldi	r22, 0x01	; 1
+    12be:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    12c2:	81 e4       	ldi	r24, 0x41	; 65
+    12c4:	62 e0       	ldi	r22, 0x02	; 2
+    12c6:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <EF_S8_DIO_SetPin>
+    12ca:	08 95       	ret
+
+000012cc <EF_void_LCD_send_command>:
+    12cc:	ae 98       	cbi	0x15, 6	; 21
+    12ce:	c7 98       	cbi	0x18, 7	; 24
+    12d0:	c6 98       	cbi	0x18, 6	; 24
+    12d2:	c5 98       	cbi	0x18, 5	; 24
+    12d4:	c4 98       	cbi	0x18, 4	; 24
+    12d6:	87 fd       	sbrc	r24, 7
+    12d8:	c7 9a       	sbi	0x18, 7	; 24
+    12da:	86 fd       	sbrc	r24, 6
+    12dc:	c6 9a       	sbi	0x18, 6	; 24
+    12de:	85 fd       	sbrc	r24, 5
+    12e0:	c5 9a       	sbi	0x18, 5	; 24
+    12e2:	84 fd       	sbrc	r24, 4
+    12e4:	c4 9a       	sbi	0x18, 4	; 24
+    12e6:	af 9a       	sbi	0x15, 7	; 21
+    12e8:	95 e0       	ldi	r25, 0x05	; 5
+    12ea:	9a 95       	dec	r25
+    12ec:	f1 f7       	brne	.-4      	; 0x12ea <EF_void_LCD_send_command+0x1e>
+    12ee:	af 98       	cbi	0x15, 7	; 21
+    12f0:	c7 98       	cbi	0x18, 7	; 24
+    12f2:	c6 98       	cbi	0x18, 6	; 24
+    12f4:	c5 98       	cbi	0x18, 5	; 24
+    12f6:	c4 98       	cbi	0x18, 4	; 24
+    12f8:	83 fd       	sbrc	r24, 3
+    12fa:	c7 9a       	sbi	0x18, 7	; 24
+    12fc:	82 fd       	sbrc	r24, 2
+    12fe:	c6 9a       	sbi	0x18, 6	; 24
+    1300:	81 fd       	sbrc	r24, 1
+    1302:	c5 9a       	sbi	0x18, 5	; 24
+    1304:	80 fd       	sbrc	r24, 0
+    1306:	c4 9a       	sbi	0x18, 4	; 24
+    1308:	af 9a       	sbi	0x15, 7	; 21
+    130a:	85 e0       	ldi	r24, 0x05	; 5
+    130c:	8a 95       	dec	r24
+    130e:	f1 f7       	brne	.-4      	; 0x130c <EF_void_LCD_send_command+0x40>
+    1310:	af 98       	cbi	0x15, 7	; 21
+    1312:	88 e5       	ldi	r24, 0x58	; 88
+    1314:	92 e0       	ldi	r25, 0x02	; 2
+    1316:	01 97       	sbiw	r24, 0x01	; 1
+    1318:	f1 f7       	brne	.-4      	; 0x1316 <EF_void_LCD_send_command+0x4a>
+    131a:	08 95       	ret
+
+0000131c <EF_void_LCD_send_data>:
+    131c:	ae 9a       	sbi	0x15, 6	; 21
+    131e:	c7 98       	cbi	0x18, 7	; 24
+    1320:	c6 98       	cbi	0x18, 6	; 24
+    1322:	c5 98       	cbi	0x18, 5	; 24
+    1324:	c4 98       	cbi	0x18, 4	; 24
+    1326:	87 fd       	sbrc	r24, 7
+    1328:	c7 9a       	sbi	0x18, 7	; 24
+    132a:	86 fd       	sbrc	r24, 6
+    132c:	c6 9a       	sbi	0x18, 6	; 24
+    132e:	85 fd       	sbrc	r24, 5
+    1330:	c5 9a       	sbi	0x18, 5	; 24
+    1332:	84 fd       	sbrc	r24, 4
+    1334:	c4 9a       	sbi	0x18, 4	; 24
+    1336:	af 9a       	sbi	0x15, 7	; 21
+    1338:	95 e0       	ldi	r25, 0x05	; 5
+    133a:	9a 95       	dec	r25
+    133c:	f1 f7       	brne	.-4      	; 0x133a <EF_void_LCD_send_data+0x1e>
+    133e:	af 98       	cbi	0x15, 7	; 21
+    1340:	c7 98       	cbi	0x18, 7	; 24
+    1342:	c6 98       	cbi	0x18, 6	; 24
+    1344:	c5 98       	cbi	0x18, 5	; 24
+    1346:	c4 98       	cbi	0x18, 4	; 24
+    1348:	83 fd       	sbrc	r24, 3
+    134a:	c7 9a       	sbi	0x18, 7	; 24
+    134c:	82 fd       	sbrc	r24, 2
+    134e:	c6 9a       	sbi	0x18, 6	; 24
+    1350:	81 fd       	sbrc	r24, 1
+    1352:	c5 9a       	sbi	0x18, 5	; 24
+    1354:	80 fd       	sbrc	r24, 0
+    1356:	c4 9a       	sbi	0x18, 4	; 24
+    1358:	af 9a       	sbi	0x15, 7	; 21
+    135a:	85 e0       	ldi	r24, 0x05	; 5
+    135c:	8a 95       	dec	r24
+    135e:	f1 f7       	brne	.-4      	; 0x135c <EF_void_LCD_send_data+0x40>
+    1360:	af 98       	cbi	0x15, 7	; 21
+    1362:	88 e5       	ldi	r24, 0x58	; 88
+    1364:	92 e0       	ldi	r25, 0x02	; 2
+    1366:	01 97       	sbiw	r24, 0x01	; 1
+    1368:	f1 f7       	brne	.-4      	; 0x1366 <EF_void_LCD_send_data+0x4a>
+    136a:	08 95       	ret
+
+0000136c <EF_void_LCD_goto>:
+    136c:	df 93       	push	r29
+    136e:	cf 93       	push	r28
+    1370:	00 d0       	rcall	.+0      	; 0x1372 <EF_void_LCD_goto+0x6>
+    1372:	00 d0       	rcall	.+0      	; 0x1374 <EF_void_LCD_goto+0x8>
+    1374:	cd b7       	in	r28, 0x3d	; 61
+    1376:	de b7       	in	r29, 0x3e	; 62
+    1378:	90 e8       	ldi	r25, 0x80	; 128
+    137a:	99 83       	std	Y+1, r25	; 0x01
+    137c:	90 ec       	ldi	r25, 0xC0	; 192
+    137e:	9a 83       	std	Y+2, r25	; 0x02
+    1380:	94 e9       	ldi	r25, 0x94	; 148
+    1382:	9b 83       	std	Y+3, r25	; 0x03
+    1384:	94 ed       	ldi	r25, 0xD4	; 212
+    1386:	9c 83       	std	Y+4, r25	; 0x04
+    1388:	61 50       	subi	r22, 0x01	; 1
+    138a:	fe 01       	movw	r30, r28
+    138c:	e8 0f       	add	r30, r24
+    138e:	f1 1d       	adc	r31, r1
+    1390:	80 81       	ld	r24, Z
+    1392:	86 0f       	add	r24, r22
+    1394:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    1398:	80 e4       	ldi	r24, 0x40	; 64
+    139a:	9c e9       	ldi	r25, 0x9C	; 156
+    139c:	01 97       	sbiw	r24, 0x01	; 1
+    139e:	f1 f7       	brne	.-4      	; 0x139c <EF_void_LCD_goto+0x30>
+    13a0:	0f 90       	pop	r0
+    13a2:	0f 90       	pop	r0
+    13a4:	0f 90       	pop	r0
+    13a6:	0f 90       	pop	r0
+    13a8:	cf 91       	pop	r28
+    13aa:	df 91       	pop	r29
+    13ac:	08 95       	ret
+
+000013ae <EF_void_LCD_print>:
+    13ae:	1f 93       	push	r17
+    13b0:	cf 93       	push	r28
+    13b2:	df 93       	push	r29
+    13b4:	ec 01       	movw	r28, r24
+    13b6:	10 e0       	ldi	r17, 0x00	; 0
+    13b8:	03 c0       	rjmp	.+6      	; 0x13c0 <EF_void_LCD_print+0x12>
+    13ba:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    13be:	1f 5f       	subi	r17, 0xFF	; 255
+    13c0:	fe 01       	movw	r30, r28
+    13c2:	e1 0f       	add	r30, r17
+    13c4:	f1 1d       	adc	r31, r1
+    13c6:	80 81       	ld	r24, Z
+    13c8:	88 23       	and	r24, r24
+    13ca:	b9 f7       	brne	.-18     	; 0x13ba <EF_void_LCD_print+0xc>
+    13cc:	df 91       	pop	r29
+    13ce:	cf 91       	pop	r28
+    13d0:	1f 91       	pop	r17
+    13d2:	08 95       	ret
+
+000013d4 <EF_void_LCD_print_ByLength>:
+    13d4:	0f 93       	push	r16
+    13d6:	1f 93       	push	r17
+    13d8:	cf 93       	push	r28
+    13da:	df 93       	push	r29
+    13dc:	06 2f       	mov	r16, r22
+    13de:	ec 01       	movw	r28, r24
+    13e0:	10 e0       	ldi	r17, 0x00	; 0
+    13e2:	04 c0       	rjmp	.+8      	; 0x13ec <EF_void_LCD_print_ByLength+0x18>
+    13e4:	89 91       	ld	r24, Y+
+    13e6:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    13ea:	1f 5f       	subi	r17, 0xFF	; 255
+    13ec:	10 17       	cp	r17, r16
+    13ee:	d0 f3       	brcs	.-12     	; 0x13e4 <EF_void_LCD_print_ByLength+0x10>
+    13f0:	df 91       	pop	r29
+    13f2:	cf 91       	pop	r28
+    13f4:	1f 91       	pop	r17
+    13f6:	0f 91       	pop	r16
+    13f8:	08 95       	ret
+
+000013fa <EF_void_LCD_Clear_Screen>:
+    13fa:	81 e0       	ldi	r24, 0x01	; 1
+    13fc:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    1400:	85 e0       	ldi	r24, 0x05	; 5
+    1402:	8a 95       	dec	r24
+    1404:	f1 f7       	brne	.-4      	; 0x1402 <EF_void_LCD_Clear_Screen+0x8>
+    1406:	80 e2       	ldi	r24, 0x20	; 32
+    1408:	9e e4       	ldi	r25, 0x4E	; 78
+    140a:	01 97       	sbiw	r24, 0x01	; 1
+    140c:	f1 f7       	brne	.-4      	; 0x140a <EF_void_LCD_Clear_Screen+0x10>
+    140e:	08 95       	ret
+
+00001410 <EF_void_uploadCustomChar>:
+    1410:	0f 93       	push	r16
+    1412:	1f 93       	push	r17
+    1414:	cf 93       	push	r28
+    1416:	df 93       	push	r29
+    1418:	8b 01       	movw	r16, r22
+    141a:	88 30       	cpi	r24, 0x08	; 8
+    141c:	90 f4       	brcc	.+36     	; 0x1442 <EF_void_uploadCustomChar+0x32>
+    141e:	88 0f       	add	r24, r24
+    1420:	88 0f       	add	r24, r24
+    1422:	88 0f       	add	r24, r24
+    1424:	80 5c       	subi	r24, 0xC0	; 192
+    1426:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    142a:	c0 e0       	ldi	r28, 0x00	; 0
+    142c:	d0 e0       	ldi	r29, 0x00	; 0
+    142e:	f8 01       	movw	r30, r16
+    1430:	ec 0f       	add	r30, r28
+    1432:	fd 1f       	adc	r31, r29
+    1434:	80 81       	ld	r24, Z
+    1436:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    143a:	21 96       	adiw	r28, 0x01	; 1
+    143c:	c8 30       	cpi	r28, 0x08	; 8
+    143e:	d1 05       	cpc	r29, r1
+    1440:	b1 f7       	brne	.-20     	; 0x142e <EF_void_uploadCustomChar+0x1e>
+    1442:	df 91       	pop	r29
+    1444:	cf 91       	pop	r28
+    1446:	1f 91       	pop	r17
+    1448:	0f 91       	pop	r16
+    144a:	08 95       	ret
+
+0000144c <EF_void_LCD_HextoASCII>:
+    144c:	cf 93       	push	r28
+    144e:	df 93       	push	r29
+    1450:	ec 01       	movw	r28, r24
+    1452:	88 81       	ld	r24, Y
+    1454:	82 95       	swap	r24
+    1456:	8f 70       	andi	r24, 0x0F	; 15
+    1458:	8a 30       	cpi	r24, 0x0A	; 10
+    145a:	10 f0       	brcs	.+4      	; 0x1460 <EF_void_LCD_HextoASCII+0x14>
+    145c:	89 5c       	subi	r24, 0xC9	; 201
+    145e:	01 c0       	rjmp	.+2      	; 0x1462 <EF_void_LCD_HextoASCII+0x16>
+    1460:	80 5d       	subi	r24, 0xD0	; 208
+    1462:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    1466:	88 81       	ld	r24, Y
+    1468:	8f 70       	andi	r24, 0x0F	; 15
+    146a:	8a 30       	cpi	r24, 0x0A	; 10
+    146c:	10 f0       	brcs	.+4      	; 0x1472 <EF_void_LCD_HextoASCII+0x26>
+    146e:	89 5c       	subi	r24, 0xC9	; 201
+    1470:	01 c0       	rjmp	.+2      	; 0x1474 <EF_void_LCD_HextoASCII+0x28>
+    1472:	80 5d       	subi	r24, 0xD0	; 208
+    1474:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    1478:	df 91       	pop	r29
+    147a:	cf 91       	pop	r28
+    147c:	08 95       	ret
+
+0000147e <LCD_4BIT_Write_Init>:
+    147e:	88 bb       	out	0x18, r24	; 24
+    1480:	ae 98       	cbi	0x15, 6	; 21
+    1482:	af 9a       	sbi	0x15, 7	; 21
+    1484:	80 ed       	ldi	r24, 0xD0	; 208
+    1486:	97 e0       	ldi	r25, 0x07	; 7
+    1488:	fc 01       	movw	r30, r24
+    148a:	31 97       	sbiw	r30, 0x01	; 1
+    148c:	f1 f7       	brne	.-4      	; 0x148a <LCD_4BIT_Write_Init+0xc>
+    148e:	af 98       	cbi	0x15, 7	; 21
+    1490:	01 97       	sbiw	r24, 0x01	; 1
+    1492:	f1 f7       	brne	.-4      	; 0x1490 <LCD_4BIT_Write_Init+0x12>
+    1494:	08 95       	ret
+
+00001496 <EF_void_LCD_init>:
+    1496:	0f 93       	push	r16
+    1498:	1f 93       	push	r17
+    149a:	a7 9a       	sbi	0x14, 7	; 20
+    149c:	a6 9a       	sbi	0x14, 6	; 20
+    149e:	87 b3       	in	r24, 0x17	; 23
+    14a0:	80 6f       	ori	r24, 0xF0	; 240
+    14a2:	87 bb       	out	0x17, r24	; 23
+    14a4:	88 b3       	in	r24, 0x18	; 24
+    14a6:	88 bb       	out	0x18, r24	; 24
+    14a8:	80 e3       	ldi	r24, 0x30	; 48
+    14aa:	0e 94 3f 0a 	call	0x147e	; 0x147e <LCD_4BIT_Write_Init>
+    14ae:	00 e2       	ldi	r16, 0x20	; 32
+    14b0:	1e e4       	ldi	r17, 0x4E	; 78
+    14b2:	c8 01       	movw	r24, r16
+    14b4:	01 97       	sbiw	r24, 0x01	; 1
+    14b6:	f1 f7       	brne	.-4      	; 0x14b4 <EF_void_LCD_init+0x1e>
+    14b8:	80 e3       	ldi	r24, 0x30	; 48
+    14ba:	0e 94 3f 0a 	call	0x147e	; 0x147e <LCD_4BIT_Write_Init>
+    14be:	c8 01       	movw	r24, r16
+    14c0:	01 97       	sbiw	r24, 0x01	; 1
+    14c2:	f1 f7       	brne	.-4      	; 0x14c0 <EF_void_LCD_init+0x2a>
+    14c4:	80 e3       	ldi	r24, 0x30	; 48
+    14c6:	0e 94 3f 0a 	call	0x147e	; 0x147e <LCD_4BIT_Write_Init>
+    14ca:	c8 01       	movw	r24, r16
+    14cc:	01 97       	sbiw	r24, 0x01	; 1
+    14ce:	f1 f7       	brne	.-4      	; 0x14cc <EF_void_LCD_init+0x36>
+    14d0:	80 e2       	ldi	r24, 0x20	; 32
+    14d2:	0e 94 3f 0a 	call	0x147e	; 0x147e <LCD_4BIT_Write_Init>
+    14d6:	c8 01       	movw	r24, r16
+    14d8:	01 97       	sbiw	r24, 0x01	; 1
+    14da:	f1 f7       	brne	.-4      	; 0x14d8 <EF_void_LCD_init+0x42>
+    14dc:	c8 01       	movw	r24, r16
+    14de:	01 97       	sbiw	r24, 0x01	; 1
+    14e0:	f1 f7       	brne	.-4      	; 0x14de <EF_void_LCD_init+0x48>
+    14e2:	88 e2       	ldi	r24, 0x28	; 40
+    14e4:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    14e8:	8c e0       	ldi	r24, 0x0C	; 12
+    14ea:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    14ee:	86 e0       	ldi	r24, 0x06	; 6
+    14f0:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    14f4:	80 e8       	ldi	r24, 0x80	; 128
+    14f6:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    14fa:	80 e4       	ldi	r24, 0x40	; 64
+    14fc:	9c e9       	ldi	r25, 0x9C	; 156
+    14fe:	01 97       	sbiw	r24, 0x01	; 1
+    1500:	f1 f7       	brne	.-4      	; 0x14fe <EF_void_LCD_init+0x68>
+    1502:	1f 91       	pop	r17
+    1504:	0f 91       	pop	r16
+    1506:	08 95       	ret
+
+00001508 <EF_void_LCD_Newline>:
+    1508:	80 ec       	ldi	r24, 0xC0	; 192
+    150a:	0e 94 66 09 	call	0x12cc	; 0x12cc <EF_void_LCD_send_command>
+    150e:	80 e4       	ldi	r24, 0x40	; 64
+    1510:	9c e9       	ldi	r25, 0x9C	; 156
+    1512:	01 97       	sbiw	r24, 0x01	; 1
+    1514:	f1 f7       	brne	.-4      	; 0x1512 <EF_void_LCD_Newline+0xa>
+    1516:	08 95       	ret
+
+00001518 <EF_void_LCD_print_Number>:
+    1518:	ef 92       	push	r14
+    151a:	ff 92       	push	r15
+    151c:	0f 93       	push	r16
+    151e:	df 93       	push	r29
+    1520:	cf 93       	push	r28
+    1522:	cd b7       	in	r28, 0x3d	; 61
+    1524:	de b7       	in	r29, 0x3e	; 62
+    1526:	28 97       	sbiw	r28, 0x08	; 8
+    1528:	0f b6       	in	r0, 0x3f	; 63
+    152a:	f8 94       	cli
+    152c:	de bf       	out	0x3e, r29	; 62
+    152e:	0f be       	out	0x3f, r0	; 63
+    1530:	cd bf       	out	0x3d, r28	; 61
+    1532:	9e 01       	movw	r18, r28
+    1534:	2f 5f       	subi	r18, 0xFF	; 255
+    1536:	3f 4f       	sbci	r19, 0xFF	; 255
+    1538:	38 87       	std	Y+8, r19	; 0x08
+    153a:	2f 83       	std	Y+7, r18	; 0x07
+    153c:	26 e0       	ldi	r18, 0x06	; 6
+    153e:	ef 81       	ldd	r30, Y+7	; 0x07
+    1540:	f8 85       	ldd	r31, Y+8	; 0x08
+    1542:	11 92       	st	Z+, r1
+    1544:	2a 95       	dec	r18
+    1546:	e9 f7       	brne	.-6      	; 0x1542 <EF_void_LCD_print_Number+0x2a>
+    1548:	be 01       	movw	r22, r28
+    154a:	6f 5f       	subi	r22, 0xFF	; 255
+    154c:	7f 4f       	sbci	r23, 0xFF	; 255
+    154e:	4a e0       	ldi	r20, 0x0A	; 10
+    1550:	50 e0       	ldi	r21, 0x00	; 0
+    1552:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+    1556:	00 e0       	ldi	r16, 0x00	; 0
+    1558:	7e 01       	movw	r14, r28
+    155a:	08 94       	sec
+    155c:	e1 1c       	adc	r14, r1
+    155e:	f1 1c       	adc	r15, r1
+    1560:	03 c0       	rjmp	.+6      	; 0x1568 <EF_void_LCD_print_Number+0x50>
+    1562:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    1566:	0f 5f       	subi	r16, 0xFF	; 255
+    1568:	f7 01       	movw	r30, r14
+    156a:	e0 0f       	add	r30, r16
+    156c:	f1 1d       	adc	r31, r1
+    156e:	80 81       	ld	r24, Z
+    1570:	88 23       	and	r24, r24
+    1572:	b9 f7       	brne	.-18     	; 0x1562 <EF_void_LCD_print_Number+0x4a>
+    1574:	28 96       	adiw	r28, 0x08	; 8
+    1576:	0f b6       	in	r0, 0x3f	; 63
+    1578:	f8 94       	cli
+    157a:	de bf       	out	0x3e, r29	; 62
+    157c:	0f be       	out	0x3f, r0	; 63
+    157e:	cd bf       	out	0x3d, r28	; 61
+    1580:	cf 91       	pop	r28
+    1582:	df 91       	pop	r29
+    1584:	0f 91       	pop	r16
+    1586:	ff 90       	pop	r15
+    1588:	ef 90       	pop	r14
+    158a:	08 95       	ret
+
+0000158c <EF_void_LCD_print_NUM>:
+    158c:	bf 92       	push	r11
+    158e:	cf 92       	push	r12
+    1590:	df 92       	push	r13
+    1592:	ef 92       	push	r14
+    1594:	ff 92       	push	r15
+    1596:	0f 93       	push	r16
+    1598:	df 93       	push	r29
+    159a:	cf 93       	push	r28
+    159c:	cd b7       	in	r28, 0x3d	; 61
+    159e:	de b7       	in	r29, 0x3e	; 62
+    15a0:	28 97       	sbiw	r28, 0x08	; 8
+    15a2:	0f b6       	in	r0, 0x3f	; 63
+    15a4:	f8 94       	cli
+    15a6:	de bf       	out	0x3e, r29	; 62
+    15a8:	0f be       	out	0x3f, r0	; 63
+    15aa:	cd bf       	out	0x3d, r28	; 61
+    15ac:	b6 2e       	mov	r11, r22
+    15ae:	9e 01       	movw	r18, r28
+    15b0:	2f 5f       	subi	r18, 0xFF	; 255
+    15b2:	3f 4f       	sbci	r19, 0xFF	; 255
+    15b4:	38 87       	std	Y+8, r19	; 0x08
+    15b6:	2f 83       	std	Y+7, r18	; 0x07
+    15b8:	26 e0       	ldi	r18, 0x06	; 6
+    15ba:	ef 81       	ldd	r30, Y+7	; 0x07
+    15bc:	f8 85       	ldd	r31, Y+8	; 0x08
+    15be:	11 92       	st	Z+, r1
+    15c0:	2a 95       	dec	r18
+    15c2:	e9 f7       	brne	.-6      	; 0x15be <EF_void_LCD_print_NUM+0x32>
+    15c4:	be 01       	movw	r22, r28
+    15c6:	6f 5f       	subi	r22, 0xFF	; 255
+    15c8:	7f 4f       	sbci	r23, 0xFF	; 255
+    15ca:	4a e0       	ldi	r20, 0x0A	; 10
+    15cc:	50 e0       	ldi	r21, 0x00	; 0
+    15ce:	0e 94 8a 0b 	call	0x1714	; 0x1714 <itoa>
+    15d2:	00 e0       	ldi	r16, 0x00	; 0
+    15d4:	6e 01       	movw	r12, r28
+    15d6:	08 94       	sec
+    15d8:	c1 1c       	adc	r12, r1
+    15da:	d1 1c       	adc	r13, r1
+    15dc:	09 c0       	rjmp	.+18     	; 0x15f0 <EF_void_LCD_print_NUM+0x64>
+    15de:	0f 5f       	subi	r16, 0xFF	; 255
+    15e0:	8b 2d       	mov	r24, r11
+    15e2:	60 2f       	mov	r22, r16
+    15e4:	0e 94 b6 09 	call	0x136c	; 0x136c <EF_void_LCD_goto>
+    15e8:	f7 01       	movw	r30, r14
+    15ea:	80 81       	ld	r24, Z
+    15ec:	0e 94 8e 09 	call	0x131c	; 0x131c <EF_void_LCD_send_data>
+    15f0:	76 01       	movw	r14, r12
+    15f2:	e0 0e       	add	r14, r16
+    15f4:	f1 1c       	adc	r15, r1
+    15f6:	f7 01       	movw	r30, r14
+    15f8:	80 81       	ld	r24, Z
+    15fa:	88 23       	and	r24, r24
+    15fc:	81 f7       	brne	.-32     	; 0x15de <EF_void_LCD_print_NUM+0x52>
+    15fe:	28 96       	adiw	r28, 0x08	; 8
+    1600:	0f b6       	in	r0, 0x3f	; 63
+    1602:	f8 94       	cli
+    1604:	de bf       	out	0x3e, r29	; 62
+    1606:	0f be       	out	0x3f, r0	; 63
+    1608:	cd bf       	out	0x3d, r28	; 61
+    160a:	cf 91       	pop	r28
+    160c:	df 91       	pop	r29
+    160e:	0f 91       	pop	r16
+    1610:	ff 90       	pop	r15
+    1612:	ef 90       	pop	r14
+    1614:	df 90       	pop	r13
+    1616:	cf 90       	pop	r12
+    1618:	bf 90       	pop	r11
+    161a:	08 95       	ret
+
+0000161c <main>:
+    161c:	0f 93       	push	r16
+    161e:	1f 93       	push	r17
+    1620:	df 93       	push	r29
+    1622:	cf 93       	push	r28
+    1624:	cd b7       	in	r28, 0x3d	; 61
+    1626:	de b7       	in	r29, 0x3e	; 62
+    1628:	2b 97       	sbiw	r28, 0x0b	; 11
+    162a:	0f b6       	in	r0, 0x3f	; 63
+    162c:	f8 94       	cli
+    162e:	de bf       	out	0x3e, r29	; 62
+    1630:	0f be       	out	0x3f, r0	; 63
+    1632:	cd bf       	out	0x3d, r28	; 61
+    1634:	de 01       	movw	r26, r28
+    1636:	11 96       	adiw	r26, 0x01	; 1
+    1638:	e4 ea       	ldi	r30, 0xA4	; 164
+    163a:	f0 e0       	ldi	r31, 0x00	; 0
+    163c:	8b e0       	ldi	r24, 0x0B	; 11
+    163e:	01 90       	ld	r0, Z+
+    1640:	0d 92       	st	X+, r0
+    1642:	81 50       	subi	r24, 0x01	; 1
+    1644:	e1 f7       	brne	.-8      	; 0x163e <main+0x22>
+    1646:	ce 01       	movw	r24, r28
+    1648:	01 96       	adiw	r24, 0x01	; 1
+    164a:	0e 94 0e 07 	call	0xe1c	; 0xe1c <EF_void_UART_Init>
+    164e:	08 ec       	ldi	r16, 0xC8	; 200
+    1650:	10 e0       	ldi	r17, 0x00	; 0
+    1652:	86 e8       	ldi	r24, 0x86	; 134
+    1654:	90 e0       	ldi	r25, 0x00	; 0
+    1656:	0e 94 a4 05 	call	0xb48	; 0xb48 <EF_void_UART_SendString>
+    165a:	80 e2       	ldi	r24, 0x20	; 32
+    165c:	9e e4       	ldi	r25, 0x4E	; 78
+    165e:	f8 01       	movw	r30, r16
+    1660:	31 97       	sbiw	r30, 0x01	; 1
+    1662:	f1 f7       	brne	.-4      	; 0x1660 <main+0x44>
+    1664:	01 97       	sbiw	r24, 0x01	; 1
+    1666:	d9 f7       	brne	.-10     	; 0x165e <main+0x42>
+    1668:	f4 cf       	rjmp	.-24     	; 0x1652 <main+0x36>
+
+0000166a <__udivmodqi4>:
+    166a:	99 1b       	sub	r25, r25
+    166c:	79 e0       	ldi	r23, 0x09	; 9
+    166e:	04 c0       	rjmp	.+8      	; 0x1678 <__udivmodqi4_ep>
+
+00001670 <__udivmodqi4_loop>:
+    1670:	99 1f       	adc	r25, r25
+    1672:	96 17       	cp	r25, r22
+    1674:	08 f0       	brcs	.+2      	; 0x1678 <__udivmodqi4_ep>
+    1676:	96 1b       	sub	r25, r22
+
+00001678 <__udivmodqi4_ep>:
+    1678:	88 1f       	adc	r24, r24
+    167a:	7a 95       	dec	r23
+    167c:	c9 f7       	brne	.-14     	; 0x1670 <__udivmodqi4_loop>
+    167e:	80 95       	com	r24
+    1680:	08 95       	ret
+
+00001682 <__udivmodhi4>:
+    1682:	aa 1b       	sub	r26, r26
+    1684:	bb 1b       	sub	r27, r27
+    1686:	51 e1       	ldi	r21, 0x11	; 17
+    1688:	07 c0       	rjmp	.+14     	; 0x1698 <__udivmodhi4_ep>
+
+0000168a <__udivmodhi4_loop>:
+    168a:	aa 1f       	adc	r26, r26
+    168c:	bb 1f       	adc	r27, r27
+    168e:	a6 17       	cp	r26, r22
+    1690:	b7 07       	cpc	r27, r23
+    1692:	10 f0       	brcs	.+4      	; 0x1698 <__udivmodhi4_ep>
+    1694:	a6 1b       	sub	r26, r22
+    1696:	b7 0b       	sbc	r27, r23
+
+00001698 <__udivmodhi4_ep>:
+    1698:	88 1f       	adc	r24, r24
+    169a:	99 1f       	adc	r25, r25
+    169c:	5a 95       	dec	r21
+    169e:	a9 f7       	brne	.-22     	; 0x168a <__udivmodhi4_loop>
+    16a0:	80 95       	com	r24
+    16a2:	90 95       	com	r25
+    16a4:	bc 01       	movw	r22, r24
+    16a6:	cd 01       	movw	r24, r26
+    16a8:	08 95       	ret
+
+000016aa <__divmodhi4>:
+    16aa:	97 fb       	bst	r25, 7
+    16ac:	09 2e       	mov	r0, r25
+    16ae:	07 26       	eor	r0, r23
+    16b0:	0a d0       	rcall	.+20     	; 0x16c6 <__divmodhi4_neg1>
+    16b2:	77 fd       	sbrc	r23, 7
+    16b4:	04 d0       	rcall	.+8      	; 0x16be <__divmodhi4_neg2>
+    16b6:	e5 df       	rcall	.-54     	; 0x1682 <__udivmodhi4>
+    16b8:	06 d0       	rcall	.+12     	; 0x16c6 <__divmodhi4_neg1>
+    16ba:	00 20       	and	r0, r0
+    16bc:	1a f4       	brpl	.+6      	; 0x16c4 <__divmodhi4_exit>
+
+000016be <__divmodhi4_neg2>:
+    16be:	70 95       	com	r23
+    16c0:	61 95       	neg	r22
+    16c2:	7f 4f       	sbci	r23, 0xFF	; 255
+
+000016c4 <__divmodhi4_exit>:
+    16c4:	08 95       	ret
+
+000016c6 <__divmodhi4_neg1>:
+    16c6:	f6 f7       	brtc	.-4      	; 0x16c4 <__divmodhi4_exit>
+    16c8:	90 95       	com	r25
+    16ca:	81 95       	neg	r24
+    16cc:	9f 4f       	sbci	r25, 0xFF	; 255
+    16ce:	08 95       	ret
+
+000016d0 <__udivmodsi4>:
+    16d0:	a1 e2       	ldi	r26, 0x21	; 33
+    16d2:	1a 2e       	mov	r1, r26
+    16d4:	aa 1b       	sub	r26, r26
+    16d6:	bb 1b       	sub	r27, r27
+    16d8:	fd 01       	movw	r30, r26
+    16da:	0d c0       	rjmp	.+26     	; 0x16f6 <__udivmodsi4_ep>
+
+000016dc <__udivmodsi4_loop>:
+    16dc:	aa 1f       	adc	r26, r26
+    16de:	bb 1f       	adc	r27, r27
+    16e0:	ee 1f       	adc	r30, r30
+    16e2:	ff 1f       	adc	r31, r31
+    16e4:	a2 17       	cp	r26, r18
+    16e6:	b3 07       	cpc	r27, r19
+    16e8:	e4 07       	cpc	r30, r20
+    16ea:	f5 07       	cpc	r31, r21
+    16ec:	20 f0       	brcs	.+8      	; 0x16f6 <__udivmodsi4_ep>
+    16ee:	a2 1b       	sub	r26, r18
+    16f0:	b3 0b       	sbc	r27, r19
+    16f2:	e4 0b       	sbc	r30, r20
+    16f4:	f5 0b       	sbc	r31, r21
+
+000016f6 <__udivmodsi4_ep>:
+    16f6:	66 1f       	adc	r22, r22
+    16f8:	77 1f       	adc	r23, r23
+    16fa:	88 1f       	adc	r24, r24
+    16fc:	99 1f       	adc	r25, r25
+    16fe:	1a 94       	dec	r1
+    1700:	69 f7       	brne	.-38     	; 0x16dc <__udivmodsi4_loop>
+    1702:	60 95       	com	r22
+    1704:	70 95       	com	r23
+    1706:	80 95       	com	r24
+    1708:	90 95       	com	r25
+    170a:	9b 01       	movw	r18, r22
+    170c:	ac 01       	movw	r20, r24
+    170e:	bd 01       	movw	r22, r26
+    1710:	cf 01       	movw	r24, r30
+    1712:	08 95       	ret
+
+00001714 <itoa>:
+    1714:	fb 01       	movw	r30, r22
+    1716:	9f 01       	movw	r18, r30
+    1718:	e8 94       	clt
+    171a:	42 30       	cpi	r20, 0x02	; 2
+    171c:	c4 f0       	brlt	.+48     	; 0x174e <itoa+0x3a>
+    171e:	45 32       	cpi	r20, 0x25	; 37
+    1720:	b4 f4       	brge	.+44     	; 0x174e <itoa+0x3a>
+    1722:	4a 30       	cpi	r20, 0x0A	; 10
+    1724:	29 f4       	brne	.+10     	; 0x1730 <itoa+0x1c>
+    1726:	97 fb       	bst	r25, 7
+    1728:	1e f4       	brtc	.+6      	; 0x1730 <itoa+0x1c>
+    172a:	90 95       	com	r25
+    172c:	81 95       	neg	r24
+    172e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1730:	64 2f       	mov	r22, r20
+    1732:	77 27       	eor	r23, r23
+    1734:	0e 94 41 0b 	call	0x1682	; 0x1682 <__udivmodhi4>
+    1738:	80 5d       	subi	r24, 0xD0	; 208
+    173a:	8a 33       	cpi	r24, 0x3A	; 58
+    173c:	0c f0       	brlt	.+2      	; 0x1740 <itoa+0x2c>
+    173e:	89 5d       	subi	r24, 0xD9	; 217
+    1740:	81 93       	st	Z+, r24
+    1742:	cb 01       	movw	r24, r22
+    1744:	00 97       	sbiw	r24, 0x00	; 0
+    1746:	a1 f7       	brne	.-24     	; 0x1730 <itoa+0x1c>
+    1748:	16 f4       	brtc	.+4      	; 0x174e <itoa+0x3a>
+    174a:	5d e2       	ldi	r21, 0x2D	; 45
+    174c:	51 93       	st	Z+, r21
+    174e:	10 82       	st	Z, r1
+    1750:	c9 01       	movw	r24, r18
+    1752:	0c 94 ab 0b 	jmp	0x1756	; 0x1756 <strrev>
+
+00001756 <strrev>:
+    1756:	dc 01       	movw	r26, r24
+    1758:	fc 01       	movw	r30, r24
+    175a:	67 2f       	mov	r22, r23
+    175c:	71 91       	ld	r23, Z+
+    175e:	77 23       	and	r23, r23
+    1760:	e1 f7       	brne	.-8      	; 0x175a <strrev+0x4>
+    1762:	32 97       	sbiw	r30, 0x02	; 2
+    1764:	04 c0       	rjmp	.+8      	; 0x176e <strrev+0x18>
+    1766:	7c 91       	ld	r23, X
+    1768:	6d 93       	st	X+, r22
+    176a:	70 83       	st	Z, r23
+    176c:	62 91       	ld	r22, -Z
+    176e:	ae 17       	cp	r26, r30
+    1770:	bf 07       	cpc	r27, r31
+    1772:	c8 f3       	brcs	.-14     	; 0x1766 <strrev+0x10>
+    1774:	08 95       	ret
+
+00001776 <_exit>:
+    1776:	f8 94       	cli
+
+00001778 <__stop_program>:
+    1778:	ff cf       	rjmp	.-2      	; 0x1778 <__stop_program>

@@ -31,6 +31,8 @@
 #include <avr/interrupt.h>
 #include "../ServiceLayer/std_types.h"
 
+#define F_CPU 8000000
+
 /**************************************************
  * Predefine variables
  **************************************************/

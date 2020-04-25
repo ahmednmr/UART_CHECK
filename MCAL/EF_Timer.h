@@ -31,7 +31,7 @@
 #include "../ServiceLayer/std_types.h"
 #include "EF_Timer_cfg.h"
 
-
+//#define NULL ((void *)0)
 
 
 /****************************************************************************

@@ -51,10 +51,7 @@ void EF_void_UART_Init(UART_cfg_str *uart_cfg)
 	U32_t uart_UBBR;
 	*uart_reg.UCSRB_Reg = 0x00;
 	*uart_reg.UCSRC_Reg = 0x00;
-	/* Set the UART Baud rate */
-	uart_UBBR =  F_CPU/(uart_cfg->baudrate*16)-1;
-	*uart_reg.UBRRH_Reg = (uint8_t)(uart_UBBR>>8);
-	*uart_reg.UBRRL_Reg = (uint8_t)uart_UBBR;
+
 	/* Enable or disable RX,TX module & Interrupt */
 	if (uart_cfg->RXInterruptEnable) *uart_reg.UCSRB_Reg |= (1 << RXCIE);
 	if (uart_cfg->TXInterruptEnable) *uart_reg.UCSRB_Reg |= (1 << TXCIE);
@@ -85,8 +82,19 @@ void EF_void_UART_Init(UART_cfg_str *uart_cfg)
 	{
 		*uart_reg.UCSRC_Reg |= (1 << URSEL) | 0x06;
 	}
+
+
+	/* Set the UART Baud rate */
+
+
+	uart_UBBR =  F_CPU/(uart_cfg->baudrate*16)-1;
+	*uart_reg.UBRRH_Reg = (uint8_t)(uart_UBBR>>8);
+	*uart_reg.UBRRL_Reg = (uint8_t)uart_UBBR;
+
 	/* using Special Timer to able some UART Function to be unstuck */
 	EF_void_TimerCreate(UART_TIMER_ID, UART_WAIT_TIME);
+
+
 }
 
 /****************************************************************************
